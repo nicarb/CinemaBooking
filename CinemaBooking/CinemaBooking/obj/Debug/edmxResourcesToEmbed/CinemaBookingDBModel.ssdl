@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CinemaBookingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CinemaBookingModelStoreContainer">
+    <EntitySet Name="Category" EntityType="CinemaBookingModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cinema" EntityType="CinemaBookingModel.Store.Cinema" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Language" EntityType="CinemaBookingModel.Store.Language" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Movie" EntityType="CinemaBookingModel.Store.Movie" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MovieCategory" EntityType="CinemaBookingModel.Store.MovieCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Person" EntityType="CinemaBookingModel.Store.Person" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="CinemaBookingModel.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TheatreRoom" EntityType="CinemaBookingModel.Store.TheatreRoom" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="CinemaBookingModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_iddirector_movie_idperson_person" Association="CinemaBookingModel.Store.FK_iddirector_movie_idperson_person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idlanguage_movie_idlanguage_language" Association="CinemaBookingModel.Store.FK_idlanguage_movie_idlanguage_language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idwriter_movie_idperson_person" Association="CinemaBookingModel.Store.FK_idwriter_movie_idperson_person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="idcategory" />
+    </Key>
+    <Property Name="idcategory" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="desc" Type="text" />
+  </EntityType>
+  <EntityType Name="Cinema">
+    <Key>
+      <PropertyRef Name="idcinema" />
+    </Key>
+    <Property Name="idcinema" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="desc" Type="text" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="idlanguage" />
+    </Key>
+    <Property Name="idlanguage" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="45" />
+    <Property Name="desc" Type="nchar" MaxLength="100" />
+    <Property Name="acronym" Type="nchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="idmovie" />
+    </Key>
+    <Property Name="idmovie" Type="int" Nullable="false" />
+    <Property Name="title" Type="nchar" MaxLength="100" />
+    <Property Name="plot" Type="varchar" MaxLength="500" />
+    <Property Name="length" Type="smallint" />
+    <Property Name="iddirector" Type="int" />
+    <Property Name="idwriter" Type="int" />
+    <Property Name="release_year" Type="date" />
+    <Property Name="idlanguage" Type="int" />
+    <Property Name="rating" Type="tinyint" />
+    <Property Name="cover" Type="image" />
+  </EntityType>
+  <EntityType Name="MovieCategory">
+    <Key>
+      <PropertyRef Name="idmovie_category" />
+    </Key>
+    <Property Name="idmovie_category" Type="int" Nullable="false" />
+    <Property Name="idmovie" Type="int" Nullable="false" />
+    <Property Name="idcategory" Type="int" Nullable="false" />
+    <Property Name="desc" Type="text" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="idperson" />
+    </Key>
+    <Property Name="idperson" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nchar" MaxLength="45" />
+    <Property Name="surname" Type="nchar" MaxLength="45" />
+    <Property Name="birthdate" Type="date" />
+    <Property Name="gender" Type="char" MaxLength="1" />
+    <Property Name="address" Type="nchar" MaxLength="200" />
+    <Property Name="email" Type="nchar" MaxLength="100" />
+    <Property Name="update_date" Type="datetime" />
+    <Property Name="insertion_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="idrole" />
+    </Key>
+    <Property Name="idrole" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="45" />
+    <Property Name="desc" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TheatreRoom">
+    <Key>
+      <PropertyRef Name="idtheatre_room" />
+    </Key>
+    <Property Name="idtheatre_room" Type="int" Nullable="false" />
+    <Property Name="idmovie" Type="int" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="desc" Type="text" />
+    <Property Name="rows_nr" Type="int" />
+    <Property Name="seats_per_row" Type="int" />
+    <Property Name="idcinema" Type="int" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="iduser" />
+    </Key>
+    <Property Name="iduser" Type="int" Nullable="false" />
+    <Property Name="idperson" Type="int" />
+    <Property Name="username" Type="nchar" MaxLength="30" />
+    <Property Name="password" Type="nchar" MaxLength="30" />
+    <Property Name="isactive" Type="bit" />
+    <Property Name="update_date" Type="datetime" />
+    <Property Name="insertion_date" Type="datetime" />
+    <Property Name="role" Type="nchar" MaxLength="1" />
+  </EntityType>
+  <Association Name="FK_iddirector_movie_idperson_person">
+    <End Role="Person" Type="CinemaBookingModel.Store.Person" Multiplicity="0..1" />
+    <End Role="Movie" Type="CinemaBookingModel.Store.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="idperson" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="iddirector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idlanguage_movie_idlanguage_language">
+    <End Role="Language" Type="CinemaBookingModel.Store.Language" Multiplicity="0..1" />
+    <End Role="Movie" Type="CinemaBookingModel.Store.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="idlanguage" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="idlanguage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idwriter_movie_idperson_person">
+    <End Role="Person" Type="CinemaBookingModel.Store.Person" Multiplicity="0..1" />
+    <End Role="Movie" Type="CinemaBookingModel.Store.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="idperson" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="idwriter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'cinema_booking.dbo.UserView' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="UserView">
+        <Property Name="name" Type="nchar" MaxLength="45" />
+        <Property Name="surname" Type="nchar" MaxLength="45" />
+        <Property Name="username" Type="nchar" MaxLength="30" />
+        <Property Name="birthdate" Type="date" />
+        <Property Name="gender" Type="char" MaxLength="1" />
+        <Property Name="email" Type="nchar" MaxLength="100" />
+        <Property Name="Expr1" Type="nchar" MaxLength="45" />
+      </EntityType>-->
+</Schema>

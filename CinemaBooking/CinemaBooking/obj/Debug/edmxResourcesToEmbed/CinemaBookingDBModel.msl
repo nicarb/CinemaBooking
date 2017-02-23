@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CinemaBookingModelStoreContainer" CdmEntityContainer="CinemaBookingEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="CinemaBookingModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="idcategory" ColumnName="idcategory" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cinemas">
+      <EntityTypeMapping TypeName="CinemaBookingModel.Cinema">
+        <MappingFragment StoreEntitySet="Cinema">
+          <ScalarProperty Name="idcinema" ColumnName="idcinema" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="CinemaBookingModel.Language">
+        <MappingFragment StoreEntitySet="Language">
+          <ScalarProperty Name="idlanguage" ColumnName="idlanguage" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="acronym" ColumnName="acronym" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="CinemaBookingModel.Movie">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="idmovie" ColumnName="idmovie" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="plot" ColumnName="plot" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="iddirector" ColumnName="iddirector" />
+          <ScalarProperty Name="idwriter" ColumnName="idwriter" />
+          <ScalarProperty Name="release_year" ColumnName="release_year" />
+          <ScalarProperty Name="idlanguage" ColumnName="idlanguage" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="cover" ColumnName="cover" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovieCategories">
+      <EntityTypeMapping TypeName="CinemaBookingModel.MovieCategory">
+        <MappingFragment StoreEntitySet="MovieCategory">
+          <ScalarProperty Name="idmovie_category" ColumnName="idmovie_category" />
+          <ScalarProperty Name="idmovie" ColumnName="idmovie" />
+          <ScalarProperty Name="idcategory" ColumnName="idcategory" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="CinemaBookingModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="idperson" ColumnName="idperson" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="insertion_date" ColumnName="insertion_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="CinemaBookingModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="idrole" ColumnName="idrole" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TheatreRooms">
+      <EntityTypeMapping TypeName="CinemaBookingModel.TheatreRoom">
+        <MappingFragment StoreEntitySet="TheatreRoom">
+          <ScalarProperty Name="idtheatre_room" ColumnName="idtheatre_room" />
+          <ScalarProperty Name="idmovie" ColumnName="idmovie" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="rows_nr" ColumnName="rows_nr" />
+          <ScalarProperty Name="seats_per_row" ColumnName="seats_per_row" />
+          <ScalarProperty Name="idcinema" ColumnName="idcinema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="CinemaBookingModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="iduser" ColumnName="iduser" />
+          <ScalarProperty Name="idperson" ColumnName="idperson" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="insertion_date" ColumnName="insertion_date" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

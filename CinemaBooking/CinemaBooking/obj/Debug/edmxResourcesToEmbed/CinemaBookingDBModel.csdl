@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CinemaBookingModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CinemaBookingEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="CinemaBookingModel.Category" />
+    <EntitySet Name="Cinemas" EntityType="CinemaBookingModel.Cinema" />
+    <EntitySet Name="Languages" EntityType="CinemaBookingModel.Language" />
+    <EntitySet Name="Movies" EntityType="CinemaBookingModel.Movie" />
+    <EntitySet Name="MovieCategories" EntityType="CinemaBookingModel.MovieCategory" />
+    <EntitySet Name="People" EntityType="CinemaBookingModel.Person" />
+    <EntitySet Name="Roles" EntityType="CinemaBookingModel.Role" />
+    <EntitySet Name="TheatreRooms" EntityType="CinemaBookingModel.TheatreRoom" />
+    <EntitySet Name="Users" EntityType="CinemaBookingModel.User" />
+    <AssociationSet Name="FK_idlanguage_movie_idlanguage_language" Association="CinemaBookingModel.FK_idlanguage_movie_idlanguage_language">
+      <End Role="Language" EntitySet="Languages" />
+      <End Role="Movie" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_iddirector_movie_idperson_person" Association="CinemaBookingModel.FK_iddirector_movie_idperson_person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Movie" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idwriter_movie_idperson_person" Association="CinemaBookingModel.FK_idwriter_movie_idperson_person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Movie" EntitySet="Movies" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="idcategory" />
+    </Key>
+    <Property Name="idcategory" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="desc" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Cinema">
+    <Key>
+      <PropertyRef Name="idcinema" />
+    </Key>
+    <Property Name="idcinema" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="desc" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="address" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="idlanguage" />
+    </Key>
+    <Property Name="idlanguage" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" Unicode="true" FixedLength="true" />
+    <Property Name="desc" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="acronym" Type="String" MaxLength="3" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Movies" Relationship="CinemaBookingModel.FK_idlanguage_movie_idlanguage_language" FromRole="Language" ToRole="Movie" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="idmovie" />
+    </Key>
+    <Property Name="idmovie" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="plot" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="length" Type="Int16" />
+    <Property Name="iddirector" Type="Int32" />
+    <Property Name="idwriter" Type="Int32" />
+    <Property Name="release_year" Type="DateTime" Precision="0" />
+    <Property Name="idlanguage" Type="Int32" />
+    <Property Name="rating" Type="Byte" />
+    <Property Name="cover" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Language" Relationship="CinemaBookingModel.FK_idlanguage_movie_idlanguage_language" FromRole="Movie" ToRole="Language" />
+    <NavigationProperty Name="Person" Relationship="CinemaBookingModel.FK_iddirector_movie_idperson_person" FromRole="Movie" ToRole="Person" />
+    <NavigationProperty Name="Person1" Relationship="CinemaBookingModel.FK_idwriter_movie_idperson_person" FromRole="Movie" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="MovieCategory">
+    <Key>
+      <PropertyRef Name="idmovie_category" />
+    </Key>
+    <Property Name="idmovie_category" Type="Int32" Nullable="false" />
+    <Property Name="idmovie" Type="Int32" Nullable="false" />
+    <Property Name="idcategory" Type="Int32" Nullable="false" />
+    <Property Name="desc" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="idperson" />
+    </Key>
+    <Property Name="idperson" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" Unicode="true" FixedLength="true" />
+    <Property Name="surname" Type="String" MaxLength="45" Unicode="true" FixedLength="true" />
+    <Property Name="birthdate" Type="DateTime" Precision="0" />
+    <Property Name="gender" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="address" Type="String" MaxLength="200" Unicode="true" FixedLength="true" />
+    <Property Name="email" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="insertion_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Movies" Relationship="CinemaBookingModel.FK_iddirector_movie_idperson_person" FromRole="Person" ToRole="Movie" />
+    <NavigationProperty Name="Movies1" Relationship="CinemaBookingModel.FK_idwriter_movie_idperson_person" FromRole="Person" ToRole="Movie" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="idrole" />
+    </Key>
+    <Property Name="idrole" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="45" Unicode="true" FixedLength="true" />
+    <Property Name="desc" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="TheatreRoom">
+    <Key>
+      <PropertyRef Name="idtheatre_room" />
+    </Key>
+    <Property Name="idtheatre_room" Type="Int32" Nullable="false" />
+    <Property Name="idmovie" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="desc" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="rows_nr" Type="Int32" />
+    <Property Name="seats_per_row" Type="Int32" />
+    <Property Name="idcinema" Type="Int32" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="iduser" />
+    </Key>
+    <Property Name="iduser" Type="Int32" Nullable="false" />
+    <Property Name="idperson" Type="Int32" />
+    <Property Name="username" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="password" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="isactive" Type="Boolean" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="insertion_date" Type="DateTime" Precision="3" />
+    <Property Name="role" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <Association Name="FK_idlanguage_movie_idlanguage_language">
+    <End Role="Language" Type="CinemaBookingModel.Language" Multiplicity="0..1" />
+    <End Role="Movie" Type="CinemaBookingModel.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="idlanguage" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="idlanguage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_iddirector_movie_idperson_person">
+    <End Role="Person" Type="CinemaBookingModel.Person" Multiplicity="0..1" />
+    <End Role="Movie" Type="CinemaBookingModel.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="idperson" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="iddirector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idwriter_movie_idperson_person">
+    <End Role="Person" Type="CinemaBookingModel.Person" Multiplicity="0..1" />
+    <End Role="Movie" Type="CinemaBookingModel.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="idperson" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="idwriter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
