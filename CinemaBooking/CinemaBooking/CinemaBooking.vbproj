@@ -126,6 +126,12 @@
     <Compile Include="MovieCategory.vb">
       <DependentUpon>CinemaBookingDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MoviePreviewUserControl.Designer.vb">
+      <DependentUpon>MoviePreviewUserControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MoviePreviewUserControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManagerForm.resx">
       <DependentUpon>ManagerForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MoviePreviewUserControl.resx">
+      <DependentUpon>MoviePreviewUserControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
