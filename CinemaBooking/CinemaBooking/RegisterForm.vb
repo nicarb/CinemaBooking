@@ -1,7 +1,5 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Text.RegularExpressions
-Imports System.Text
-Imports System.Security.Cryptography
 
 Public Class RegisterForm
     Dim con As New SqlConnection(MyConnection.MyConnectionString)
@@ -75,9 +73,9 @@ Public Class RegisterForm
         dataGrid()
     End Sub
 
-    
 
-    
+
+
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Update.Click
         Dim cmd As New SqlCommand
@@ -108,7 +106,7 @@ Public Class RegisterForm
                 active = "0"
             End If
             cmd1.Connection = con
-            cmd1.CommandText = "UPDATE [User] SET [username] = ' " & TextBox6.Text & " ',[password] = ' " & TextBox7.Text & " ', [isactive] = ' " & active & " ' , [role] = '" & combo & "' where idperson = ' " & TextBox5.Text & " ' and iduser = '" & TextBox9.Text & "' "
+            cmd1.CommandText = "UPDATE [User] SET [username] = ' " & TextBox6.Text & " ',[password] = ' " & TextBox7.Text & " ', [isactive] = ' " & active & " ' , [role] = '" & combo & "' where idperson = ' " & TextBox5.Text & " ' "
             cmd1.ExecuteNonQuery()
             MsgBox("Succesfully Update!", MsgBoxStyle.Information, "Update")
         Catch ex As Exception

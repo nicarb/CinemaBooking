@@ -14,3 +14,20 @@ C:\Users\Arber Fama\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\b
 C:\Users\Arber Fama\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.vbprojResolveAssemblyReference.cache
 C:\Users\Arber Fama\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.ManagerForm.resources
 C:\Users\Arber Fama\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.StaffForm.resources
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\bin\Debug\CinemaBooking.exe.config
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.exe
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.xml
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.pdb
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.vbprojResolveAssemblyReference.cache
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.LoginForm.resources
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.ManagerForm.resources
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.MoviePreviewUserControl.resources
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.Resources.resources
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.RegisterForm.resources
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.StaffForm.resources
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\obj\Debug\CinemaBooking.vbproj.GenerateResource.Cache
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\bin\Debug\CinemaBooking.exe
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\bin\Debug\CinemaBooking.pdb
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\bin\Debug\CinemaBooking.xml
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\bin\Debug\EntityFramework.dll
+C:\Users\Julie\Documents\GitHub\CinemaBooking\CinemaBooking\CinemaBooking\bin\Debug\EntityFramework.xml

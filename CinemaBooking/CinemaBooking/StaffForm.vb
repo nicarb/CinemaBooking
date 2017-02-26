@@ -8,4 +8,5 @@
         Dim test As String = username
 
     End Sub
+
 End Class

@@ -6,214 +6,265 @@ CinemaBooking
 </name>
 </assembly>
 <members>
+<member name="T:CinemaBooking.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
 <member name="P:CinemaBooking.My.Resources.Resources.ResourceManager">
-	<summary>
+<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
-</member><member name="P:CinemaBooking.My.Resources.Resources.Culture">
-	<summary>
+</member>
+<member name="P:CinemaBooking.My.Resources.Resources.Culture">
+<summary>
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
-</member><member name="T:CinemaBooking.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.CategoryDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.CinemaDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.LanguageDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.MovieDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.MovieCategoryDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.PersonDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.RoleDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.TheatreRoomDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.UserDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.UserViewDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.CategoryRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.CinemaRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.LanguageRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.MovieRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.MovieCategoryRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.PersonRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.RoleRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.TheatreRoomRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.UserRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.UserViewRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.CategoryRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.CinemaRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.LanguageRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.MovieRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.MovieCategoryRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.PersonRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.RoleRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.TheatreRoomRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.UserRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet.UserViewRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSet">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet">
+<summary>
 Represents a strongly typed in-memory cache of data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.CategoryTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.CategoryDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.CinemaDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.LanguageDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.MovieDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.MovieCategoryDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.PersonDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.RoleDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.TheatreRoomDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.UserDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.UserViewDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.CategoryRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.CinemaRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.LanguageRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.MovieRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.MovieCategoryRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.PersonRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.RoleRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.TheatreRoomRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.UserRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.UserViewRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.CategoryRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.CinemaRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.LanguageRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.MovieRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.MovieCategoryRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.PersonRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.RoleRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.TheatreRoomRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.UserRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSet.UserViewRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.CategoryTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.CinemaTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.CinemaTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.LanguageTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.LanguageTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.MovieTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.MovieTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.MovieCategoryTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.MovieCategoryTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.PersonTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.PersonTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.RoleTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.RoleTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.TheatreRoomTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.TheatreRoomTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.UserTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.UserTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.UserViewTableAdapter">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.UserViewTableAdapter">
+<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
-</member><member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(CinemaBooking.cinema_bookingDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(CinemaBooking.cinema_bookingDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
 Update rows in top-down order.
 </summary>
-</member><member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(CinemaBooking.cinema_bookingDataSet,System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
+</member>
+<member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(CinemaBooking.cinema_bookingDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
 Insert rows in top-down order.
 </summary>
-</member><member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(CinemaBooking.cinema_bookingDataSet,System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
+</member>
+<member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(CinemaBooking.cinema_bookingDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
 Delete rows in bottom-up order.
 </summary>
-</member><member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
+</member>
+<member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
 Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
 </summary>
-</member><member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateAll(CinemaBooking.cinema_bookingDataSet)">
-	<summary>
+</member>
+<member name="M:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateAll(CinemaBooking.cinema_bookingDataSet)">
+<summary>
 Update all changes to the dataset.
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
 Update Order Option
 </summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
-	<summary>
+</member>
+<member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
 Used to sort self-referenced table's rows
-</summary>
-</member><member name="T:CinemaBooking.cinema_bookingDataSetTableAdapters.TableAdapterManager">
-	<summary>
-TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
 </summary>
 </member>
 </members>

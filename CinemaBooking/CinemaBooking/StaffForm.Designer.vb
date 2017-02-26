@@ -39,16 +39,16 @@ Partial Class StaffForm
         Me.movieTitleBtt = New System.Windows.Forms.Label()
         Me.TabControl_items = New System.Windows.Forms.TabControl()
         Me.TabPage_movies = New System.Windows.Forms.TabPage()
+        Me.ListView_movieItems = New System.Windows.Forms.ListView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.ListView_foodItems = New System.Windows.Forms.ListView()
         Me.Cinema_bookingDataSet1 = New CinemaBooking.cinema_bookingDataSet()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.ListView_movieItems = New System.Windows.Forms.ListView()
-        Me.ListView_foodItems = New System.Windows.Forms.ListView()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button_checkOut = New System.Windows.Forms.Button()
-        Me.Button_clearAll = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button_clearAll = New System.Windows.Forms.Button()
+        Me.Button_checkOut = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.movieGBox.SuspendLayout()
         Me.TabControl_items.SuspendLayout()
@@ -219,6 +219,14 @@ Partial Class StaffForm
         Me.TabPage_movies.Text = "Movies"
         Me.TabPage_movies.UseVisualStyleBackColor = True
         '
+        'ListView_movieItems
+        '
+        Me.ListView_movieItems.Location = New System.Drawing.Point(6, 6)
+        Me.ListView_movieItems.Name = "ListView_movieItems"
+        Me.ListView_movieItems.Size = New System.Drawing.Size(758, 665)
+        Me.ListView_movieItems.TabIndex = 0
+        Me.ListView_movieItems.UseCompatibleStateImageBehavior = False
+        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.ListView_foodItems)
@@ -229,6 +237,14 @@ Partial Class StaffForm
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Food"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'ListView_foodItems
+        '
+        Me.ListView_foodItems.Location = New System.Drawing.Point(6, 6)
+        Me.ListView_foodItems.Name = "ListView_foodItems"
+        Me.ListView_foodItems.Size = New System.Drawing.Size(758, 665)
+        Me.ListView_foodItems.TabIndex = 0
+        Me.ListView_foodItems.UseCompatibleStateImageBehavior = False
         '
         'Cinema_bookingDataSet1
         '
@@ -249,45 +265,14 @@ Partial Class StaffForm
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Chart"
         '
-        'ListView_movieItems
+        'Label2
         '
-        Me.ListView_movieItems.Location = New System.Drawing.Point(6, 6)
-        Me.ListView_movieItems.Name = "ListView_movieItems"
-        Me.ListView_movieItems.Size = New System.Drawing.Size(758, 665)
-        Me.ListView_movieItems.TabIndex = 0
-        Me.ListView_movieItems.UseCompatibleStateImageBehavior = False
-        '
-        'ListView_foodItems
-        '
-        Me.ListView_foodItems.Location = New System.Drawing.Point(6, 6)
-        Me.ListView_foodItems.Name = "ListView_foodItems"
-        Me.ListView_foodItems.Size = New System.Drawing.Size(758, 665)
-        Me.ListView_foodItems.TabIndex = 0
-        Me.ListView_foodItems.UseCompatibleStateImageBehavior = False
-        '
-        'CheckedListBox1
-        '
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(6, 20)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(159, 289)
-        Me.CheckedListBox1.TabIndex = 0
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(47, 316)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(118, 20)
-        Me.TextBox1.TabIndex = 1
-        '
-        'Button_checkOut
-        '
-        Me.Button_checkOut.Location = New System.Drawing.Point(91, 342)
-        Me.Button_checkOut.Name = "Button_checkOut"
-        Me.Button_checkOut.Size = New System.Drawing.Size(75, 23)
-        Me.Button_checkOut.TabIndex = 2
-        Me.Button_checkOut.Text = "Check Out"
-        Me.Button_checkOut.UseVisualStyleBackColor = True
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(10, 319)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(31, 13)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Total"
         '
         'Button_clearAll
         '
@@ -298,14 +283,29 @@ Partial Class StaffForm
         Me.Button_clearAll.Text = "Clear All"
         Me.Button_clearAll.UseVisualStyleBackColor = True
         '
-        'Label2
+        'Button_checkOut
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 319)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(31, 13)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "Total"
+        Me.Button_checkOut.Location = New System.Drawing.Point(91, 342)
+        Me.Button_checkOut.Name = "Button_checkOut"
+        Me.Button_checkOut.Size = New System.Drawing.Size(75, 23)
+        Me.Button_checkOut.TabIndex = 2
+        Me.Button_checkOut.Text = "Check Out"
+        Me.Button_checkOut.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(47, 316)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(118, 20)
+        Me.TextBox1.TabIndex = 1
+        '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Location = New System.Drawing.Point(6, 20)
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        Me.CheckedListBox1.Size = New System.Drawing.Size(159, 289)
+        Me.CheckedListBox1.TabIndex = 0
         '
         'GroupBox2
         '

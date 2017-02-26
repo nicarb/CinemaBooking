@@ -30,7 +30,6 @@ Partial Class LoginForm
         Me.BTN_Cancel = New System.Windows.Forms.Button()
         Me.BTN_Login = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.BTN_register = New System.Windows.Forms.Button()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -99,16 +98,6 @@ Partial Class LoginForm
         Me.PictureBox1.TabIndex = 7
         Me.PictureBox1.TabStop = False
         '
-        'BTN_register
-        '
-        Me.BTN_register.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTN_register.Location = New System.Drawing.Point(12, 260)
-        Me.BTN_register.Name = "BTN_register"
-        Me.BTN_register.Size = New System.Drawing.Size(75, 30)
-        Me.BTN_register.TabIndex = 10
-        Me.BTN_register.Text = "Register"
-        Me.BTN_register.UseVisualStyleBackColor = True
-        '
         'RichTextBox1
         '
         Me.RichTextBox1.Location = New System.Drawing.Point(224, 182)
@@ -123,7 +112,6 @@ Partial Class LoginForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(483, 302)
         Me.Controls.Add(Me.RichTextBox1)
-        Me.Controls.Add(Me.BTN_register)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextBox_Password)
@@ -145,7 +133,6 @@ Partial Class LoginForm
     Friend WithEvents BTN_Cancel As System.Windows.Forms.Button
     Friend WithEvents BTN_Login As System.Windows.Forms.Button
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents BTN_register As System.Windows.Forms.Button
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
 
 End Class

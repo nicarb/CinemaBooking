@@ -25,17 +25,22 @@ Public Class LoginForm
                     'MessageBox.Show("Login successfully!!")
                     Dim roleChar As String = ds.Tables(0).Rows(0)("role").ToString()
                     Dim pwd As String = ds.Tables(0).Rows(0)("password").ToString().Trim()
+                    Dim idperson As String = ds.Tables(0).Rows(0)("idperson").ToString().Trim()
+                    'Dim iduser As String = ds.Tables(0).Rows(0)("iduser").ToString()
                     Dim pwdOk As Boolean = (hashedPwd.Equals(pwd))
 
                     Select Case roleChar
                         Case "A"
-                            Dim managerForm As New ManagerForm(TextBox_Username.Text)
+                            Dim managerForm As New ManagerForm(idperson)
+                            managerForm.Text = "Welcome Manager " & TextBox_Username.Text & "!"
                             managerForm.Show()
                         Case "S"
-                            Dim staffForm As New StaffForm(TextBox_Username.Text)
+                            Dim staffForm As New StaffForm(idperson)
+                            staffForm.Text = "Welcome Seller " & TextBox_Username.Text & "!"
                             staffForm.Show()
                         Case "U"
-                            Dim userForm As New UserForm(TextBox_Username.Text)
+                            Dim userForm As New UserForm(idperson)
+                            userForm.Text = "Welcome User " & TextBox_Username.Text & "!"
                             userForm.Show()
                     End Select
 
@@ -61,11 +66,6 @@ Public Class LoginForm
         TextBox_Password.Text = ""
         'Focus on Username field
         TextBox_Username.Focus()
-
     End Function
 
-
-    Private Sub BTN_register_Click(sender As Object, e As EventArgs) Handles BTN_register.Click
-        RegisterForm.Show()
-    End Sub
 End Class
