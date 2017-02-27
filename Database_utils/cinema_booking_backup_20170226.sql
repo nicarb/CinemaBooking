@@ -1,0 +1,115 @@
+USE [master]
+GO
+
+/****** Object:  Database [cinema_booking]    Script Date: 2/26/2017 11:37:48 PM ******/
+DROP DATABASE [cinema_booking]
+GO
+
+/****** Object:  Database [cinema_booking]    Script Date: 2/26/2017 11:37:48 PM ******/
+CREATE DATABASE [cinema_booking]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'cinema_booking', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\cinema_booking.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'cinema_booking_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\cinema_booking_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+
+ALTER DATABASE [cinema_booking] SET COMPATIBILITY_LEVEL = 110
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [cinema_booking].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [cinema_booking] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET AUTO_CREATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [cinema_booking] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [cinema_booking] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [cinema_booking] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [cinema_booking] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [cinema_booking] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [cinema_booking] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [cinema_booking] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [cinema_booking] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [cinema_booking] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [cinema_booking] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+
+ALTER DATABASE [cinema_booking] SET  READ_WRITE 
+GO
+
