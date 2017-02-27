@@ -48,3 +48,5 @@ Temporary Items
 *.suo
 CinemaBooking/CinemaBooking/bin/*
 CinemaBooking/CinemaBooking/App.config
+*.exe
+CinemaBooking/CinemaBooking/obj/*
