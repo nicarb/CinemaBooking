@@ -50,6 +50,8 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -59,10 +61,12 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -160,6 +164,11 @@
     <Compile Include="Role.vb">
       <DependentUpon>CinemaBookingDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RowClassItems\MovieRowItem.vb" />
+    <Compile Include="SeatSelectionUserControl.xaml.vb">
+      <DependentUpon>SeatSelectionUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SqlUtils.vb" />
     <Compile Include="StaffForm.Designer.vb">
       <DependentUpon>StaffForm.vb</DependentUpon>
     </Compile>
@@ -248,6 +257,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="SeatSelectionUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

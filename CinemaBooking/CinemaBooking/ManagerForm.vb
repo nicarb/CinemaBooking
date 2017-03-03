@@ -18,8 +18,7 @@ Public Class ManagerForm
         dataGrid()
         Try
             con.Open()
-            Dim da As New SqlDataAdapter("SELECT Person.idperson ,Person.name, Person.surname, Person.birthdate, Person.gender, Person.address, Person.email, [User].username, [User].password, [User].isactive,  [User].role, [User].iduser
-        From Person INNER Join [User] On Person.idperson = [User].idperson And Person.idperson= '" & idpers & "' ", con)
+            Dim da As New SqlDataAdapter("SELECT Person.idperson ,Person.name, Person.surname, Person.birthdate, Person.gender, Person.address, Person.email, [User].username, [User].password, [User].isactive,  [User].role, [User].iduser From Person INNER Join [User] On Person.idperson = [User].idperson And Person.idperson= '" & idpers & "' ", con)
             Dim ds As New DataSet
             da.Fill(ds, "Person")
             If (ds.Tables(0).Rows.Count > 0) Then
@@ -169,8 +168,7 @@ Public Class ManagerForm
     End Sub
 
     Public Function dataGrid()
-        Dim adapter As SqlDataAdapter = New SqlDataAdapter("SELECT  Person.idperson ,Person.name, Person.surname, Person.birthdate, Person.gender, Person.address, Person.email, [User].username, [User].password, [User].isactive,  [User].role, [User].iduser
-        FROM   Person INNER JOIN [User] ON Person.idperson = [User].idperson AND Person.idperson <> '" & idpers & "'", con)
+        Dim adapter As SqlDataAdapter = New SqlDataAdapter("SELECT  Person.idperson ,Person.name, Person.surname, Person.birthdate, Person.gender, Person.address, Person.email, [User].username, [User].password, [User].isactive,  [User].role, [User].iduser FROM   Person INNER JOIN [User] ON Person.idperson = [User].idperson AND Person.idperson <> '" & idpers & "'", con)
         Dim dt As New DataTable
         adapter.Fill(dt)
         DataGridView1.DataSource = dt

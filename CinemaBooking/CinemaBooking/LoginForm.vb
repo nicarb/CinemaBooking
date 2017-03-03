@@ -38,6 +38,7 @@ Public Class LoginForm
                             Dim staffForm As New StaffForm(idperson)
                             staffForm.Text = "Welcome Seller " & TextBox_Username.Text & "!"
                             staffForm.Show()
+                            Me.Hide()
                         Case "U"
                             Dim userForm As New UserForm(idperson)
                             userForm.Text = "Welcome User " & TextBox_Username.Text & "!"
@@ -51,7 +52,7 @@ Public Class LoginForm
                 End If
                 con.Close()
             Catch ex As Exception
-                MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show(ex.Message, "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub

@@ -1,5 +1,6 @@
 ﻿Imports System.Security.Cryptography
 Imports System.Text
+Imports System.Data.SqlClient
 
 Public Class Utilities
     Shared orderedChars As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=][}{<>"
@@ -46,4 +47,6 @@ Public Class Utilities
         Dim hashedResult As String = Convert.ToBase64String(hashBytes)
         Return hashedResult
     End Function
+
+    
 End Class
