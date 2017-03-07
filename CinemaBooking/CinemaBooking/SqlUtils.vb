@@ -1,6 +1,9 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class SqlUtils
+    Public Shared currentLoggedUserID As Integer
+    Public Shared currentLoggedUserRole As Char
+
     Public Shared Function getMovieCategories(ByRef con As SqlConnection, ByVal idmovie As Integer) As List(Of String)
         Dim moviesList As List(Of String) = New List(Of String)
 

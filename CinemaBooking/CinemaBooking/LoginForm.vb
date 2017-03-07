@@ -21,11 +21,14 @@ Public Class LoginForm
                 'Dim da As New SqlDataAdapter("SELECT * from [User] WHERE username ='" & TextBox_Username.Text & "' AND password = '" & hashedPwd & "'", con)
                 Dim ds As New DataSet
                 da.Fill(ds, "User")
+                con.Close()
                 If (ds.Tables(0).Rows.Count > 0) Then
                     'MessageBox.Show("Login successfully!!")
                     Dim roleChar As String = ds.Tables(0).Rows(0)("role").ToString()
                     Dim pwd As String = ds.Tables(0).Rows(0)("password").ToString().Trim()
                     Dim idperson As String = ds.Tables(0).Rows(0)("idperson").ToString().Trim()
+                    SqlUtils.currentLoggedUserID = ds.Tables(0).Rows(0)("iduser")
+                    SqlUtils.currentLoggedUserRole = roleChar
                     'Dim iduser As String = ds.Tables(0).Rows(0)("iduser").ToString()
                     Dim pwdOk As Boolean = (hashedPwd.Equals(pwd))
 
@@ -49,10 +52,12 @@ Public Class LoginForm
                 Else
                     MessageBox.Show("Username and Password do not match!", "Authentication Failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     clearField()
+                    con.Close()
+
                 End If
-                con.Close()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                con.Close()
             End Try
         End If
     End Sub
