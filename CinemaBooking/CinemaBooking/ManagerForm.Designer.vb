@@ -88,9 +88,35 @@ Partial Class ManagerForm
         Me.TextBox16 = New System.Windows.Forms.TextBox()
         Me.Insert = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.PersonBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ClearFilm = New System.Windows.Forms.Button()
+        Me.DeleteFilm = New System.Windows.Forms.Button()
+        Me.UpdatFilm = New System.Windows.Forms.Button()
+        Me.AddFilm = New System.Windows.Forms.Button()
+        Me.ComboLanguage = New System.Windows.Forms.ComboBox()
+        Me.DateFilm = New System.Windows.Forms.DateTimePicker()
+        Me.Plot = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.label = New System.Windows.Forms.Label()
+        Me.title = New System.Windows.Forms.TextBox()
+        Me.label25 = New System.Windows.Forms.Label()
+        Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.id = New System.Windows.Forms.TextBox()
+        Me.Length = New System.Windows.Forms.NumericUpDown()
+        Me.Rating = New System.Windows.Forms.NumericUpDown()
+        Me.But_Upload = New System.Windows.Forms.Button()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+        Me.FilmDataGrid = New System.Windows.Forms.DataGridView()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.ColorDialog2 = New System.Windows.Forms.ColorDialog()
+        Me.PersonBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Cinema_bookingDataSet1 = New CinemaBooking.cinema_bookingDataSet()
         Me.TabControl1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -100,7 +126,15 @@ Partial Class ManagerForm
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.GroupBox6.SuspendLayout()
+        CType(Me.Length, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Rating, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox7.SuspendLayout()
+        CType(Me.FilmDataGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PersonBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Cinema_bookingDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -109,10 +143,10 @@ Partial Class ManagerForm
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Font = New System.Drawing.Font("Algerian", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(-7, 12)
+        Me.TabControl1.Location = New System.Drawing.Point(-7, -2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1001, 609)
+        Me.TabControl1.Size = New System.Drawing.Size(1001, 623)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage3
@@ -126,7 +160,7 @@ Partial Class ManagerForm
         Me.TabPage3.ForeColor = System.Drawing.Color.Black
         Me.TabPage3.Location = New System.Drawing.Point(4, 27)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(993, 578)
+        Me.TabPage3.Size = New System.Drawing.Size(993, 592)
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "Profile"
         '
@@ -413,7 +447,7 @@ Partial Class ManagerForm
         Me.TabPage1.ForeColor = System.Drawing.Color.Gray
         Me.TabPage1.Location = New System.Drawing.Point(4, 27)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(993, 578)
+        Me.TabPage1.Size = New System.Drawing.Size(993, 592)
         Me.TabPage1.TabIndex = 1
         Me.TabPage1.Text = "Insert User"
         '
@@ -759,17 +793,262 @@ Partial Class ManagerForm
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.DarkGray
+        Me.TabPage2.Controls.Add(Me.ClearFilm)
+        Me.TabPage2.Controls.Add(Me.DeleteFilm)
+        Me.TabPage2.Controls.Add(Me.UpdatFilm)
+        Me.TabPage2.Controls.Add(Me.AddFilm)
+        Me.TabPage2.Controls.Add(Me.ComboLanguage)
+        Me.TabPage2.Controls.Add(Me.DateFilm)
+        Me.TabPage2.Controls.Add(Me.Plot)
+        Me.TabPage2.Controls.Add(Me.Label30)
+        Me.TabPage2.Controls.Add(Me.Label29)
+        Me.TabPage2.Controls.Add(Me.Label28)
+        Me.TabPage2.Controls.Add(Me.Label26)
+        Me.TabPage2.Controls.Add(Me.label)
+        Me.TabPage2.Controls.Add(Me.title)
+        Me.TabPage2.Controls.Add(Me.label25)
+        Me.TabPage2.Controls.Add(Me.GroupBox6)
+        Me.TabPage2.Controls.Add(Me.GroupBox7)
         Me.TabPage2.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabPage2.ForeColor = System.Drawing.Color.Black
         Me.TabPage2.Location = New System.Drawing.Point(4, 27)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(993, 578)
+        Me.TabPage2.Size = New System.Drawing.Size(993, 592)
         Me.TabPage2.TabIndex = 2
         Me.TabPage2.Text = "Insert Film"
+        '
+        'ClearFilm
+        '
+        Me.ClearFilm.Location = New System.Drawing.Point(551, 179)
+        Me.ClearFilm.Name = "ClearFilm"
+        Me.ClearFilm.Size = New System.Drawing.Size(75, 31)
+        Me.ClearFilm.TabIndex = 25
+        Me.ClearFilm.Text = "Clear"
+        Me.ClearFilm.UseVisualStyleBackColor = True
+        '
+        'DeleteFilm
+        '
+        Me.DeleteFilm.Location = New System.Drawing.Point(470, 179)
+        Me.DeleteFilm.Name = "DeleteFilm"
+        Me.DeleteFilm.Size = New System.Drawing.Size(75, 31)
+        Me.DeleteFilm.TabIndex = 24
+        Me.DeleteFilm.Text = "Delete"
+        Me.DeleteFilm.UseVisualStyleBackColor = True
+        '
+        'UpdatFilm
+        '
+        Me.UpdatFilm.Location = New System.Drawing.Point(389, 179)
+        Me.UpdatFilm.Name = "UpdatFilm"
+        Me.UpdatFilm.Size = New System.Drawing.Size(75, 31)
+        Me.UpdatFilm.TabIndex = 23
+        Me.UpdatFilm.Text = "Update"
+        Me.UpdatFilm.UseVisualStyleBackColor = True
+        '
+        'AddFilm
+        '
+        Me.AddFilm.Location = New System.Drawing.Point(308, 179)
+        Me.AddFilm.Name = "AddFilm"
+        Me.AddFilm.Size = New System.Drawing.Size(75, 31)
+        Me.AddFilm.TabIndex = 22
+        Me.AddFilm.Text = "Insert"
+        Me.AddFilm.UseVisualStyleBackColor = True
+        '
+        'ComboLanguage
+        '
+        Me.ComboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboLanguage.FormattingEnabled = True
+        Me.ComboLanguage.Location = New System.Drawing.Point(334, 64)
+        Me.ComboLanguage.Name = "ComboLanguage"
+        Me.ComboLanguage.Size = New System.Drawing.Size(94, 27)
+        Me.ComboLanguage.TabIndex = 14
+        '
+        'DateFilm
+        '
+        Me.DateFilm.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DateFilm.Location = New System.Drawing.Point(334, 22)
+        Me.DateFilm.Name = "DateFilm"
+        Me.DateFilm.Size = New System.Drawing.Size(94, 26)
+        Me.DateFilm.TabIndex = 13
+        '
+        'Plot
+        '
+        Me.Plot.Location = New System.Drawing.Point(73, 60)
+        Me.Plot.Name = "Plot"
+        Me.Plot.Size = New System.Drawing.Size(100, 26)
+        Me.Plot.TabIndex = 10
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(240, 102)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(47, 19)
+        Me.Label30.TabIndex = 7
+        Me.Label30.Text = "Rating"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(240, 63)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(67, 19)
+        Me.Label29.TabIndex = 6
+        Me.Label29.Text = "Language"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(240, 24)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(87, 19)
+        Me.Label28.TabIndex = 5
+        Me.Label28.Text = "Release Year"
+        '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(15, 99)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(50, 19)
+        Me.Label26.TabIndex = 3
+        Me.Label26.Text = "Length"
+        '
+        'label
+        '
+        Me.label.AutoSize = True
+        Me.label.Location = New System.Drawing.Point(16, 67)
+        Me.label.Name = "label"
+        Me.label.Size = New System.Drawing.Size(33, 19)
+        Me.label.TabIndex = 2
+        Me.label.Text = "Plot"
+        '
+        'title
+        '
+        Me.title.Location = New System.Drawing.Point(73, 21)
+        Me.title.Name = "title"
+        Me.title.Size = New System.Drawing.Size(100, 26)
+        Me.title.TabIndex = 1
+        '
+        'label25
+        '
+        Me.label25.AutoSize = True
+        Me.label25.Location = New System.Drawing.Point(16, 23)
+        Me.label25.Name = "label25"
+        Me.label25.Size = New System.Drawing.Size(34, 19)
+        Me.label25.TabIndex = 0
+        Me.label25.Text = "Title"
+        '
+        'GroupBox6
+        '
+        Me.GroupBox6.Controls.Add(Me.id)
+        Me.GroupBox6.Controls.Add(Me.Length)
+        Me.GroupBox6.Controls.Add(Me.Rating)
+        Me.GroupBox6.Controls.Add(Me.But_Upload)
+        Me.GroupBox6.Controls.Add(Me.CheckedListBox1)
+        Me.GroupBox6.Controls.Add(Me.PictureBox1)
+        Me.GroupBox6.Controls.Add(Me.Label32)
+        Me.GroupBox6.Controls.Add(Me.Label31)
+        Me.GroupBox6.Location = New System.Drawing.Point(15, 0)
+        Me.GroupBox6.Name = "GroupBox6"
+        Me.GroupBox6.Size = New System.Drawing.Size(921, 172)
+        Me.GroupBox6.TabIndex = 19
+        Me.GroupBox6.TabStop = False
+        Me.GroupBox6.Text = "Film Data"
+        '
+        'id
+        '
+        Me.id.Location = New System.Drawing.Point(179, 26)
+        Me.id.Name = "id"
+        Me.id.Size = New System.Drawing.Size(10, 26)
+        Me.id.TabIndex = 21
+        Me.id.Visible = False
+        '
+        'Length
+        '
+        Me.Length.Location = New System.Drawing.Point(58, 102)
+        Me.Length.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.Length.Name = "Length"
+        Me.Length.Size = New System.Drawing.Size(100, 26)
+        Me.Length.TabIndex = 20
+        '
+        'Rating
+        '
+        Me.Rating.Location = New System.Drawing.Point(319, 102)
+        Me.Rating.Maximum = New Decimal(New Integer() {99, 0, 0, 0})
+        Me.Rating.Name = "Rating"
+        Me.Rating.Size = New System.Drawing.Size(94, 26)
+        Me.Rating.TabIndex = 19
+        '
+        'But_Upload
+        '
+        Me.But_Upload.Location = New System.Drawing.Point(481, 129)
+        Me.But_Upload.Name = "But_Upload"
+        Me.But_Upload.Size = New System.Drawing.Size(94, 28)
+        Me.But_Upload.TabIndex = 18
+        Me.But_Upload.Text = "Upload"
+        Me.But_Upload.UseVisualStyleBackColor = True
+        '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Location = New System.Drawing.Point(753, 17)
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        Me.CheckedListBox1.Size = New System.Drawing.Size(120, 88)
+        Me.CheckedListBox1.TabIndex = 17
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(481, 54)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(94, 60)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 16
+        Me.PictureBox1.TabStop = False
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(657, 22)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(65, 19)
+        Me.Label32.TabIndex = 9
+        Me.Label32.Text = "Category"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(477, 17)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(47, 19)
+        Me.Label31.TabIndex = 8
+        Me.Label31.Text = "Cover"
+        '
+        'GroupBox7
+        '
+        Me.GroupBox7.Controls.Add(Me.FilmDataGrid)
+        Me.GroupBox7.Location = New System.Drawing.Point(15, 208)
+        Me.GroupBox7.Name = "GroupBox7"
+        Me.GroupBox7.Size = New System.Drawing.Size(921, 202)
+        Me.GroupBox7.TabIndex = 21
+        Me.GroupBox7.TabStop = False
+        Me.GroupBox7.Text = "Film"
+        '
+        'FilmDataGrid
+        '
+        Me.FilmDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.FilmDataGrid.Location = New System.Drawing.Point(6, 25)
+        Me.FilmDataGrid.Name = "FilmDataGrid"
+        Me.FilmDataGrid.Size = New System.Drawing.Size(909, 147)
+        Me.FilmDataGrid.TabIndex = 20
         '
         'PersonBindingSource
         '
         Me.PersonBindingSource.DataMember = "Person"
+        '
+        'Cinema_bookingDataSet1
+        '
+        Me.Cinema_bookingDataSet1.DataSetName = "cinema_bookingDataSet"
+        Me.Cinema_bookingDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'ManagerForm
         '
@@ -795,7 +1074,17 @@ Partial Class ManagerForm
         Me.GroupBox4.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        Me.GroupBox6.ResumeLayout(False)
+        Me.GroupBox6.PerformLayout()
+        CType(Me.Length, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Rating, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox7.ResumeLayout(False)
+        CType(Me.FilmDataGrid, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PersonBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Cinema_bookingDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -868,4 +1157,30 @@ Partial Class ManagerForm
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents ColorDialog2 As ColorDialog
     Friend WithEvents Button2 As Button
+    Friend WithEvents CheckedListBox1 As CheckedListBox
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ComboLanguage As ComboBox
+    Friend WithEvents DateFilm As DateTimePicker
+    Friend WithEvents Plot As TextBox
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Label31 As Label
+    Friend WithEvents Label30 As Label
+    Friend WithEvents Label29 As Label
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label26 As Label
+    Friend WithEvents label As Label
+    Friend WithEvents title As TextBox
+    Friend WithEvents label25 As Label
+    Friend WithEvents Cinema_bookingDataSet1 As cinema_bookingDataSet
+    Friend WithEvents But_Upload As Button
+    Friend WithEvents GroupBox6 As GroupBox
+    Friend WithEvents FilmDataGrid As DataGridView
+    Friend WithEvents DeleteFilm As Button
+    Friend WithEvents UpdatFilm As Button
+    Friend WithEvents AddFilm As Button
+    Friend WithEvents GroupBox7 As GroupBox
+    Friend WithEvents ClearFilm As Button
+    Friend WithEvents Rating As NumericUpDown
+    Friend WithEvents Length As NumericUpDown
+    Friend WithEvents id As TextBox
 End Class

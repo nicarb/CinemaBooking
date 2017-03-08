@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports System.Text.RegularExpressions
 
 Public Class ManagerForm
@@ -11,13 +12,14 @@ Public Class ManagerForm
     Public Sub New(ByVal idperson As String)
         InitializeComponent()
         idpers = idperson
-
     End Sub
 
     Private Sub ManagerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dataGrid()
+
         Try
             con.Open()
+            'Load User Data
             Dim da As New SqlDataAdapter("SELECT Person.idperson ,Person.name, Person.surname, Person.birthdate, Person.gender, Person.address, Person.email, [User].username, [User].password, [User].isactive,  [User].role, [User].iduser From Person INNER Join [User] On Person.idperson = [User].idperson And Person.idperson= '" & idpers & "' ", con)
             Dim ds As New DataSet
             da.Fill(ds, "Person")
@@ -53,13 +55,32 @@ Public Class ManagerForm
                     CheckBox3.Checked = False
                 End If
             End If
+
+            'Populate Language combobox
+            Dim command As New SqlCommand("SELECT * FROM [dbo].[Language] where isMovieLanguage = 'T'", con)
+            Dim adapter As New SqlDataAdapter(command)
+            Dim table As New DataTable()
+            adapter.Fill(table)
+            ComboLanguage.DataSource = table
+            ComboLanguage.DisplayMember = "name"
+            ComboLanguage.ValueMember = "idlanguage"
+
+            'Populate Category in checkBoxList
+            Dim comma As New SqlCommand("Select * From [cinema_booking].[dbo].[Category]", con)
+            Dim adapr As New SqlDataAdapter(comma)
+            Dim t As New DataTable()
+            adapr.Fill(t)
+            CheckedListBox1.DataSource = t
+            CheckedListBox1.DisplayMember = "name"
+            CheckedListBox1.ValueMember = "idcategory"
             con.Close()
         Catch ex As Exception
             MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
+        dataGridFilm()
     End Sub
 
+    'Insert User
     Private Sub Insert_Click(sender As Object, e As EventArgs) Handles Insert.Click
         Dim cmd As New SqlCommand
         Dim cmd1 As New SqlCommand
@@ -126,7 +147,7 @@ Public Class ManagerForm
         End If
     End Sub
 
-    'Update
+    'Update User
     Private Sub Upda_Click(sender As Object, e As EventArgs) Handles Upda.Click
         Dim cmd As New SqlCommand
         Dim cmd1 As New SqlCommand
@@ -167,7 +188,8 @@ Public Class ManagerForm
         dataGrid()
     End Sub
 
-    Public Function dataGrid()
+    'DataGrid User
+    Private Function dataGrid()
         Dim adapter As SqlDataAdapter = New SqlDataAdapter("SELECT  Person.idperson ,Person.name, Person.surname, Person.birthdate, Person.gender, Person.address, Person.email, [User].username, [User].password, [User].isactive,  [User].role, [User].iduser FROM   Person INNER JOIN [User] ON Person.idperson = [User].idperson AND Person.idperson <> '" & idpers & "'", con)
         Dim dt As New DataTable
         adapter.Fill(dt)
@@ -235,6 +257,7 @@ Public Class ManagerForm
         DateTimePicker2.Format = DateTimePickerFormat.Custom
     End Sub
 
+    'ClearFieldUser
     Private Sub clearField()
         'Clear the fields
         TextBox12.Clear()
@@ -259,6 +282,7 @@ Public Class ManagerForm
         clearField()
     End Sub
 
+    'Delete User
     Private Sub Delete_Click(sender As Object, e As EventArgs) Handles Delete.Click
         Dim cmd As New SqlCommand
         Dim cmd1 As New SqlCommand
@@ -311,4 +335,156 @@ Public Class ManagerForm
             passwordMatchControll = False
         End If
     End Function
+
+
+
+
+
+    'Film Sector
+
+    Private Sub AddFilm_Click(sender As Object, e As EventArgs) Handles AddFilm.Click
+        Dim cmd As New SqlCommand
+        Dim cmd1 As New SqlCommand
+        If String.IsNullOrEmpty(title.Text) Or title.Text.Length < 3 Then
+            MessageBox.Show("The field is Name required!", "Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            TextBox12.Focus()
+        End If
+        Dim selLanguage As Integer = Convert.ToInt32(ComboLanguage.SelectedValue)
+
+        Try
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "INSERT INTO [Movie]([title],[plot],[length], [cover], [release_year],[idlanguage],[rating]) VALUES ( '" & title.Text & "','" & Plot.Text & "','" & Length.Value & "',@photo, '" & DateFilm.Text & "','" & selLanguage & "','" & Rating.Value & "' )"
+            Dim ms As New MemoryStream()
+            '## N.A.
+            PictureBox1.BackgroundImage.Save(ms, PictureBox1.BackgroundImage.RawFormat)
+            Dim data As Byte() = ms.GetBuffer()
+            Dim p As New SqlParameter("@photo", SqlDbType.Image)
+            p.Value = data
+            cmd.Parameters.Add(p)
+            cmd.ExecuteNonQuery()
+            MsgBox("Succesfully Added Film!", MsgBoxStyle.Information, "Add")
+        Catch ex As Exception
+            MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        dataGridFilm()
+    End Sub
+
+    Private Sub UpdatFilm_Click(sender As Object, e As EventArgs) Handles UpdatFilm.Click
+        Dim cmd As New SqlCommand
+        Try
+            Dim selLanguage As Integer = Convert.ToInt32(ComboLanguage.SelectedValue)
+            '## N.A.
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "UPDATE [Movie] SET [title] = ' " & title.Text & " ',[plot] = ' " & Plot.Text & " ', [length] = ' " & Length.Value & " ' , [release_year] = '" & DateFilm.Text & "', [rating] = '" & Rating.Value & "', [idLanguage]= '" & selLanguage & "' where [idmovie] = ' " & id.Text & " ' "
+            cmd.ExecuteNonQuery()
+            MsgBox("Succesfully Update!", MsgBoxStyle.Information, "Update")
+        Catch ex As Exception
+            MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        dataGridFilm()
+    End Sub
+
+    Private Sub DeleteFilm_Click(sender As Object, e As EventArgs) Handles DeleteFilm.Click
+        Dim cmd As New SqlCommand
+        Try
+            con.Open()
+            cmd.Connection = con
+            cmd.CommandText = "DELETE [Movie] where idmovie = ' " & id.Text & " ' "
+            If MessageBox.Show("Are you sure you want to delete this Movie?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                cmd.ExecuteNonQuery()
+                MsgBox("Succesfully Delete!", MsgBoxStyle.Information, "Delete")
+            Else
+                MsgBox("The Movie was not cancelled!")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        dataGridFilm()
+    End Sub
+
+    Private Function dataGridFilm()
+        Dim adapter As SqlDataAdapter = New SqlDataAdapter("Select Movie.idmovie, Movie.title,Movie.plot, Movie.length, Movie.release_year,Movie.rating, Movie.cover,[Language].name From Movie Inner Join [Language] ON Movie.idlanguage = [Language].idlanguage", con)
+        Dim dt As New DataTable
+        adapter.Fill(dt)
+        FilmDataGrid.DataSource = dt
+        con.Close()
+        clearFieldFilm()
+    End Function
+
+    Private Sub But_Upload_Click(sender As Object, e As EventArgs) Handles But_Upload.Click
+        Dim opf As New OpenFileDialog
+        opf.Filter = "Choose Image (*.jpg; *.png; *gif)| *.jpg; *.png; *.gif"
+        If opf.ShowDialog = DialogResult.OK Then
+            PictureBox1.BackgroundImage = Image.FromFile(opf.FileName)
+        End If
+    End Sub
+
+    Private Sub ClearFilm_Click(sender As Object, e As EventArgs) Handles ClearFilm.Click
+        clearFieldFilm()
+    End Sub
+
+    Private Function clearFieldFilm()
+        title.Clear()
+        Plot.Clear()
+        Length.ResetText()
+        DateFilm.CustomFormat = " "
+        DateFilm.Format = DateTimePickerFormat.Custom
+        ComboLanguage.SelectedIndex = -1
+        Rating.ResetText()
+        Dim i As Integer
+        For i = 0 To (CheckedListBox1.Items.Count - 1) 'Listbox is the listbox's name
+            CheckedListBox1.SetItemChecked(i, False)
+        Next
+        PictureBox1.BackgroundImage = Nothing
+    End Function
+
+    Private Sub DateFilm_ValueChanged(sender As Object, e As EventArgs) Handles DateFilm.ValueChanged
+        DateFilm.Format = DateTimePickerFormat.Short
+    End Sub
+    Private Sub DateFilm_VisibleChanged(sender As Object, e As EventArgs) Handles DateFilm.VisibleChanged
+        DateFilm.CustomFormat = " "
+        DateFilm.Format = DateTimePickerFormat.Custom
+    End Sub
+
+    Private Sub FilmDataGrid_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles FilmDataGrid.CellClick
+        Dim i As Integer
+        i = FilmDataGrid.CurrentRow.Index
+        id.Text = FilmDataGrid.Item(0, i).Value.ToString.Trim()
+        Dim idFilm As String = FilmDataGrid.Item(0, i).Value.ToString.Trim()
+        title.Text = FilmDataGrid.Item(1, i).Value.ToString.Trim()
+        Plot.Text = FilmDataGrid.Item(2, i).Value.ToString.Trim()
+        Length.Value = FilmDataGrid.Item(3, i).Value
+        If FilmDataGrid.Item(4, i).Value.ToString <> "" Then
+            DateFilm.Text = FilmDataGrid.Item(4, i).Value.ToString
+        Else
+            DateFilm.CustomFormat = " "
+            DateFilm.Format = DateTimePickerFormat.Custom
+        End If
+        Rating.Value = FilmDataGrid.Item(5, i).Value
+        ComboLanguage.Text = FilmDataGrid.Item(7, i).Value.ToString
+        '## N.A.
+
+        ''PictureBox1.BackgroundImage = FilmDataGrid.Item(6, i).Value
+        'Dim myImageBytes = DirectCast(DirectCast(FilmDataGrid.Item(6, i), DataGridViewImageCell).Value, Byte())
+        'Using myMemoryStream As New IO.MemoryStream
+        '    PictureBox1.BackgroundImage = Image.FromStream(myMemoryStream)
+        'End Using
+
+        'Dim cmd As SqlCommand
+        'con.Open()
+        'cmd = New SqlCommand("SELECT [cover] FROM [cinema_booking].[dbo].[Movie] where idmovie = '" & idFilm & " '", con)
+        'Dim imagedata As Object
+        'imagedata = cmd.ExecuteScalar()
+        'If IsNothing(imagedata) Or IsDBNull(imagedata) Then
+        '    PictureBox1.Visible = False
+        'Else
+        '    Using ms As New MemoryStream(imagedata, 0, imagedata.Length)
+        '        ms.Write(imagedata, 0, imagedata.Length)
+        '        PictureBox1.BackgroundImage = Image.FromStream(ms, True)
+        '    End Using
+        'End If
+        'con.Close()
+    End Sub
 End Class

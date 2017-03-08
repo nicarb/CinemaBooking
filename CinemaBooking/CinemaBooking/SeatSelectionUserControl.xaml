@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="612" d:DesignWidth="664"
+             d:DesignHeight="440" d:DesignWidth="648"
              ScrollViewer.IsDeferredScrollingEnabled="True" >
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel Name="seatSelectionContainer" >
@@ -38,12 +38,12 @@
                 <StackPanel Name="RowY" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
                 <StackPanel Name="RowZ" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
             </StackPanel>
-            <Line Height="105px"  />
+            <Line Height="10px"  />
             <TextBlock Foreground="Blue" FontSize="16" TextAlignment="Center">Selected Tickets</TextBlock>
             <StackPanel Name="ticketList" Orientation="Vertical" HorizontalAlignment="Center">
                 
             </StackPanel>
-            <Line Height="105px"  />
+            <Line Height="10px"  />
             <Button Name="confirmTickets" Height="30" FontSize="14" FontWeight="Bold">Confirm Tickets</Button>
         </StackPanel>
     </ScrollViewer>

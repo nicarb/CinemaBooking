@@ -166,7 +166,15 @@ Public Class SeatSelectionUserControl
 
     Private Sub addTicketToCheckoutList(ticketPane As TicketSPanel)
         addTicketToDB(ticketPane)
-        staffForm.ticketsCheckoutList.Add(ticketPane)
+        Dim selectedItem As TicketTypeCBoxItem = ticketPane.ticketTypesCBox.SelectedItem
+        Dim R As DataRow = staffForm.itemDetailsDT.NewRow
+
+        R("Item") = "Ticket"
+        R("Detail") = ticketPane.typeDesc
+        R("Price") = ticketPane.price
+
+        staffForm.itemDetailsDT.Rows.Add(R)
+        staffForm.DataGridView_orderDetails.DataSource = staffForm.itemDetailsDT
     End Sub
 
     Private Sub addTicketToBookedList(ByRef ticketPane As TicketSPanel)

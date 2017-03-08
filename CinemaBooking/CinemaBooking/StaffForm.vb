@@ -4,6 +4,7 @@ Imports System.Windows.Forms.Integration
 Public Class StaffForm
     Dim screensList As List(Of IdValueCBoxItem) = New List(Of IdValueCBoxItem)
     Public ticketsCheckoutList As List(Of TicketSPanel) = New List(Of TicketSPanel)
+    Public itemDetailsDT As New DataTable
     Dim con As New SqlConnection(MyConnection.MyConnectionString)
     Dim currSlectedMovieId As Integer = 0
     Dim currSlectedProjId As Integer = 0
@@ -30,10 +31,25 @@ Public Class StaffForm
         loadBookedTicketDataGrid()
 
         loadComboBox_SelectedDay()
+
+        'Prepare details dataTable
+        initializeDetailsTable()
+
         'Dim movUControl As MoviePreviewUserControl
         'Panel_moviesList. = New ContainerControl()
     End Sub
 
+    Public Function initializeDetailsTable()
+        itemDetailsDT.Columns.Add("ID")
+        itemDetailsDT.Columns.Add("Item")
+        itemDetailsDT.Columns.Add("Detail")
+        itemDetailsDT.Columns.Add("Price")
+
+        itemDetailsDT.Columns(0).AutoIncrementSeed = 1
+        itemDetailsDT.Columns(0).AutoIncrement = True
+
+        DataGridView_orderDetails.DataSource = itemDetailsDT
+    End Function
 
     Public Function loadFoodDataGrid()
         Dim sqlCmd As String = "Select RTRIM(t1.name) AS 'Item', RTRIM(t1.details) AS 'detail', t1.unit_price, RTRIM(t2.name) AS 'Type', t1.iditem, t2.iditem_type" & _
@@ -339,6 +355,13 @@ Public Class StaffForm
 
     Private Sub TextBox_phoneBook_TextChanged(sender As Object, e As EventArgs) Handles TextBox_phoneBook.TextChanged
         loadBookedTicketDataGrid()
+    End Sub
+
+
+
+
+    Private Sub checkOutBtt_Click(sender As Object, e As EventArgs) Handles checkOutBtt.Click
+
     End Sub
 End Class
 

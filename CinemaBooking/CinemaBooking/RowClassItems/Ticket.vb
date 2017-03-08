@@ -26,6 +26,7 @@ Public Class TicketSPanel
     Public booking_time As DateTime = DateTime.Now
     Public idperson As Integer = -1
     Public ticket_state As Char = "B"
+    Public typeDesc As String = String.Empty
 
     Sub New()
 
@@ -111,6 +112,7 @@ Public Class TicketSPanel
             Me.iditem = selectedItem.id
             Me.price = selectedItem.price
             Me.discount = selectedItem.discount
+            Me.typeDesc = selectedItem.value
         End If
     End Sub
 
