@@ -109,6 +109,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>cinema_bookingDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GuiUtils.vb" />
     <Compile Include="Language.vb">
       <DependentUpon>CinemaBookingDBModel.tt</DependentUpon>
     </Compile>

@@ -14,7 +14,7 @@ Public Class LoginForm
             Dim salt As String = Utilities.CreateUserPasswordSalt(TextBox_Username.Text)
 
             Dim hashedPwd As String = Utilities.Hash512(TextBox_Password.Text, salt)
-            RichTextBox1.Text = hashedPwd
+            'RichTextBox1.Text = hashedPwd
             Try
                 con.Open()
                 Dim da As New SqlDataAdapter("SELECT * from [User] WHERE username ='" & TextBox_Username.Text & "'", con)

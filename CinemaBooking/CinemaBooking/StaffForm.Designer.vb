@@ -28,7 +28,6 @@ Partial Class StaffForm
         Me.DataGridView_movieList = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Cinema_bookingDataSet1 = New CinemaBooking.cinema_bookingDataSet()
-        Me.GroupBox_seatSelection = New System.Windows.Forms.GroupBox()
         Me.Panel_seatSelectionCont = New System.Windows.Forms.Panel()
         Me.GroupBox_checkoutList = New System.Windows.Forms.GroupBox()
         Me.Panel_checkoutCont = New System.Windows.Forms.Panel()
@@ -39,29 +38,34 @@ Partial Class StaffForm
         Me.screenLbl = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.GroupBox_movieInfo = New System.Windows.Forms.GroupBox()
-        Me.TextBox_movieTitle = New System.Windows.Forms.TextBox()
-        Me.TextBox_length = New System.Windows.Forms.TextBox()
-        Me.lengthLbl = New System.Windows.Forms.Label()
-        Me.movieTitleBtt = New System.Windows.Forms.Label()
-        Me.Label_rating = New System.Windows.Forms.Label()
-        Me.ProgressBar_rating = New System.Windows.Forms.ProgressBar()
-        Me.genreTBox = New System.Windows.Forms.TextBox()
-        Me.genreLbl = New System.Windows.Forms.Label()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.MovieBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MovieTableAdapter = New CinemaBooking.cinema_bookingDataSetTableAdapters.MovieTableAdapter()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.seatSelectionTabPage = New System.Windows.Forms.TabPage()
+        Me.bookedTicketsTabPage = New System.Windows.Forms.TabPage()
+        Me.TextBox_nameBooked = New System.Windows.Forms.TextBox()
+        Me.TextBox_movieTitleBook = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox_phoneBook = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DataGridView_booked_tickets = New System.Windows.Forms.DataGridView()
+        Me.ComboBox_bookedTicketScreen = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.TabControl_items.SuspendLayout()
         Me.TabPage_movies.SuspendLayout()
         CType(Me.DataGridView_movieList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Cinema_bookingDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_seatSelection.SuspendLayout()
         Me.GroupBox_checkoutList.SuspendLayout()
         Me.GroupBox_roomSelection.SuspendLayout()
         CType(Me.DataGridView_projectionTime, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox_movieInfo.SuspendLayout()
         CType(Me.MovieBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
+        Me.seatSelectionTabPage.SuspendLayout()
+        Me.bookedTicketsTabPage.SuspendLayout()
+        CType(Me.DataGridView_booked_tickets, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl_items
@@ -101,7 +105,7 @@ Partial Class StaffForm
         Me.TabPage2.Location = New System.Drawing.Point(4, 27)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(628, 254)
+        Me.TabPage2.Size = New System.Drawing.Size(559, 280)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Food"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -111,27 +115,17 @@ Partial Class StaffForm
         Me.Cinema_bookingDataSet1.DataSetName = "cinema_bookingDataSet"
         Me.Cinema_bookingDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'GroupBox_seatSelection
-        '
-        Me.GroupBox_seatSelection.Controls.Add(Me.Panel_seatSelectionCont)
-        Me.GroupBox_seatSelection.Location = New System.Drawing.Point(575, 27)
-        Me.GroupBox_seatSelection.Name = "GroupBox_seatSelection"
-        Me.GroupBox_seatSelection.Size = New System.Drawing.Size(672, 737)
-        Me.GroupBox_seatSelection.TabIndex = 6
-        Me.GroupBox_seatSelection.TabStop = False
-        Me.GroupBox_seatSelection.Text = "Seat Selection"
-        '
         'Panel_seatSelectionCont
         '
-        Me.Panel_seatSelectionCont.Location = New System.Drawing.Point(7, 18)
+        Me.Panel_seatSelectionCont.Location = New System.Drawing.Point(6, 6)
         Me.Panel_seatSelectionCont.Name = "Panel_seatSelectionCont"
-        Me.Panel_seatSelectionCont.Size = New System.Drawing.Size(653, 711)
+        Me.Panel_seatSelectionCont.Size = New System.Drawing.Size(651, 696)
         Me.Panel_seatSelectionCont.TabIndex = 0
         '
         'GroupBox_checkoutList
         '
         Me.GroupBox_checkoutList.Controls.Add(Me.Panel_checkoutCont)
-        Me.GroupBox_checkoutList.Location = New System.Drawing.Point(326, 344)
+        Me.GroupBox_checkoutList.Location = New System.Drawing.Point(6, 340)
         Me.GroupBox_checkoutList.Name = "GroupBox_checkoutList"
         Me.GroupBox_checkoutList.Size = New System.Drawing.Size(243, 423)
         Me.GroupBox_checkoutList.TabIndex = 7
@@ -153,9 +147,9 @@ Partial Class StaffForm
         Me.GroupBox_roomSelection.Controls.Add(Me.screenLbl)
         Me.GroupBox_roomSelection.Controls.Add(Me.Label3)
         Me.GroupBox_roomSelection.Controls.Add(Me.Label6)
-        Me.GroupBox_roomSelection.Location = New System.Drawing.Point(6, 502)
+        Me.GroupBox_roomSelection.Location = New System.Drawing.Point(255, 343)
         Me.GroupBox_roomSelection.Name = "GroupBox_roomSelection"
-        Me.GroupBox_roomSelection.Size = New System.Drawing.Size(314, 265)
+        Me.GroupBox_roomSelection.Size = New System.Drawing.Size(314, 420)
         Me.GroupBox_roomSelection.TabIndex = 8
         Me.GroupBox_roomSelection.TabStop = False
         Me.GroupBox_roomSelection.Text = "Room Selection"
@@ -173,7 +167,7 @@ Partial Class StaffForm
         Me.DataGridView_projectionTime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView_projectionTime.Location = New System.Drawing.Point(11, 81)
         Me.DataGridView_projectionTime.Name = "DataGridView_projectionTime"
-        Me.DataGridView_projectionTime.Size = New System.Drawing.Size(294, 173)
+        Me.DataGridView_projectionTime.Size = New System.Drawing.Size(294, 332)
         Me.DataGridView_projectionTime.TabIndex = 21
         '
         'ComboBox_screen
@@ -211,90 +205,6 @@ Partial Class StaffForm
         Me.Label6.TabIndex = 13
         Me.Label6.Text = "Show Times"
         '
-        'GroupBox_movieInfo
-        '
-        Me.GroupBox_movieInfo.Controls.Add(Me.TextBox_movieTitle)
-        Me.GroupBox_movieInfo.Controls.Add(Me.TextBox_length)
-        Me.GroupBox_movieInfo.Controls.Add(Me.lengthLbl)
-        Me.GroupBox_movieInfo.Controls.Add(Me.movieTitleBtt)
-        Me.GroupBox_movieInfo.Controls.Add(Me.Label_rating)
-        Me.GroupBox_movieInfo.Controls.Add(Me.ProgressBar_rating)
-        Me.GroupBox_movieInfo.Controls.Add(Me.genreTBox)
-        Me.GroupBox_movieInfo.Controls.Add(Me.genreLbl)
-        Me.GroupBox_movieInfo.Location = New System.Drawing.Point(4, 344)
-        Me.GroupBox_movieInfo.Name = "GroupBox_movieInfo"
-        Me.GroupBox_movieInfo.Size = New System.Drawing.Size(314, 152)
-        Me.GroupBox_movieInfo.TabIndex = 9
-        Me.GroupBox_movieInfo.TabStop = False
-        Me.GroupBox_movieInfo.Text = "Movie Info"
-        '
-        'TextBox_movieTitle
-        '
-        Me.TextBox_movieTitle.Location = New System.Drawing.Point(11, 33)
-        Me.TextBox_movieTitle.Name = "TextBox_movieTitle"
-        Me.TextBox_movieTitle.ReadOnly = True
-        Me.TextBox_movieTitle.Size = New System.Drawing.Size(297, 20)
-        Me.TextBox_movieTitle.TabIndex = 24
-        '
-        'TextBox_length
-        '
-        Me.TextBox_length.Location = New System.Drawing.Point(209, 73)
-        Me.TextBox_length.Name = "TextBox_length"
-        Me.TextBox_length.ReadOnly = True
-        Me.TextBox_length.Size = New System.Drawing.Size(96, 20)
-        Me.TextBox_length.TabIndex = 23
-        '
-        'lengthLbl
-        '
-        Me.lengthLbl.AutoSize = True
-        Me.lengthLbl.Location = New System.Drawing.Point(206, 57)
-        Me.lengthLbl.Name = "lengthLbl"
-        Me.lengthLbl.Size = New System.Drawing.Size(40, 13)
-        Me.lengthLbl.TabIndex = 22
-        Me.lengthLbl.Text = "Length"
-        '
-        'movieTitleBtt
-        '
-        Me.movieTitleBtt.AutoSize = True
-        Me.movieTitleBtt.Location = New System.Drawing.Point(3, 16)
-        Me.movieTitleBtt.Name = "movieTitleBtt"
-        Me.movieTitleBtt.Size = New System.Drawing.Size(27, 13)
-        Me.movieTitleBtt.TabIndex = 20
-        Me.movieTitleBtt.Text = "Title"
-        '
-        'Label_rating
-        '
-        Me.Label_rating.AutoSize = True
-        Me.Label_rating.Location = New System.Drawing.Point(8, 109)
-        Me.Label_rating.Name = "Label_rating"
-        Me.Label_rating.Size = New System.Drawing.Size(38, 13)
-        Me.Label_rating.TabIndex = 19
-        Me.Label_rating.Text = "Rating"
-        '
-        'ProgressBar_rating
-        '
-        Me.ProgressBar_rating.Location = New System.Drawing.Point(11, 125)
-        Me.ProgressBar_rating.Name = "ProgressBar_rating"
-        Me.ProgressBar_rating.Size = New System.Drawing.Size(294, 23)
-        Me.ProgressBar_rating.TabIndex = 18
-        '
-        'genreTBox
-        '
-        Me.genreTBox.Location = New System.Drawing.Point(11, 74)
-        Me.genreTBox.Name = "genreTBox"
-        Me.genreTBox.ReadOnly = True
-        Me.genreTBox.Size = New System.Drawing.Size(165, 20)
-        Me.genreTBox.TabIndex = 17
-        '
-        'genreLbl
-        '
-        Me.genreLbl.AutoSize = True
-        Me.genreLbl.Location = New System.Drawing.Point(6, 57)
-        Me.genreLbl.Name = "genreLbl"
-        Me.genreLbl.Size = New System.Drawing.Size(36, 13)
-        Me.genreLbl.TabIndex = 16
-        Me.genreLbl.Text = "Genre"
-        '
         'MenuStrip1
         '
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
@@ -320,16 +230,128 @@ Partial Class StaffForm
         '
         Me.MovieTableAdapter.ClearBeforeFill = True
         '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.seatSelectionTabPage)
+        Me.TabControl1.Controls.Add(Me.bookedTicketsTabPage)
+        Me.TabControl1.Location = New System.Drawing.Point(575, 27)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(671, 734)
+        Me.TabControl1.TabIndex = 12
+        '
+        'seatSelectionTabPage
+        '
+        Me.seatSelectionTabPage.Controls.Add(Me.Panel_seatSelectionCont)
+        Me.seatSelectionTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.seatSelectionTabPage.Name = "seatSelectionTabPage"
+        Me.seatSelectionTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.seatSelectionTabPage.Size = New System.Drawing.Size(663, 708)
+        Me.seatSelectionTabPage.TabIndex = 0
+        Me.seatSelectionTabPage.Text = "Seat Selection"
+        Me.seatSelectionTabPage.UseVisualStyleBackColor = True
+        '
+        'bookedTicketsTabPage
+        '
+        Me.bookedTicketsTabPage.Controls.Add(Me.ComboBox_bookedTicketScreen)
+        Me.bookedTicketsTabPage.Controls.Add(Me.Label5)
+        Me.bookedTicketsTabPage.Controls.Add(Me.TextBox_nameBooked)
+        Me.bookedTicketsTabPage.Controls.Add(Me.TextBox_movieTitleBook)
+        Me.bookedTicketsTabPage.Controls.Add(Me.Label1)
+        Me.bookedTicketsTabPage.Controls.Add(Me.Label2)
+        Me.bookedTicketsTabPage.Controls.Add(Me.TextBox_phoneBook)
+        Me.bookedTicketsTabPage.Controls.Add(Me.Label4)
+        Me.bookedTicketsTabPage.Controls.Add(Me.DataGridView_booked_tickets)
+        Me.bookedTicketsTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.bookedTicketsTabPage.Name = "bookedTicketsTabPage"
+        Me.bookedTicketsTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.bookedTicketsTabPage.Size = New System.Drawing.Size(663, 708)
+        Me.bookedTicketsTabPage.TabIndex = 1
+        Me.bookedTicketsTabPage.Text = "Booked Tickets"
+        Me.bookedTicketsTabPage.UseVisualStyleBackColor = True
+        '
+        'TextBox_nameBooked
+        '
+        Me.TextBox_nameBooked.Location = New System.Drawing.Point(20, 35)
+        Me.TextBox_nameBooked.Name = "TextBox_nameBooked"
+        Me.TextBox_nameBooked.Size = New System.Drawing.Size(116, 20)
+        Me.TextBox_nameBooked.TabIndex = 30
+        '
+        'TextBox_movieTitleBook
+        '
+        Me.TextBox_movieTitleBook.Location = New System.Drawing.Point(480, 35)
+        Me.TextBox_movieTitleBook.Name = "TextBox_movieTitleBook"
+        Me.TextBox_movieTitleBook.Size = New System.Drawing.Size(176, 20)
+        Me.TextBox_movieTitleBook.TabIndex = 29
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(477, 19)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(36, 13)
+        Me.Label1.TabIndex = 28
+        Me.Label1.Text = "Movie"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 18)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(35, 13)
+        Me.Label2.TabIndex = 27
+        Me.Label2.Text = "Name"
+        '
+        'TextBox_phoneBook
+        '
+        Me.TextBox_phoneBook.Location = New System.Drawing.Point(174, 35)
+        Me.TextBox_phoneBook.Name = "TextBox_phoneBook"
+        Me.TextBox_phoneBook.Size = New System.Drawing.Size(129, 20)
+        Me.TextBox_phoneBook.TabIndex = 26
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(169, 18)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(38, 13)
+        Me.Label4.TabIndex = 25
+        Me.Label4.Text = "Phone"
+        '
+        'DataGridView_booked_tickets
+        '
+        Me.DataGridView_booked_tickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView_booked_tickets.Location = New System.Drawing.Point(6, 87)
+        Me.DataGridView_booked_tickets.Name = "DataGridView_booked_tickets"
+        Me.DataGridView_booked_tickets.Size = New System.Drawing.Size(650, 615)
+        Me.DataGridView_booked_tickets.TabIndex = 0
+        '
+        'ComboBox_bookedTicketScreen
+        '
+        Me.ComboBox_bookedTicketScreen.FormattingEnabled = True
+        Me.ComboBox_bookedTicketScreen.Location = New System.Drawing.Point(326, 34)
+        Me.ComboBox_bookedTicketScreen.Name = "ComboBox_bookedTicketScreen"
+        Me.ComboBox_bookedTicketScreen.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox_bookedTicketScreen.TabIndex = 32
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(323, 19)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(41, 13)
+        Me.Label5.TabIndex = 31
+        Me.Label5.Text = "Screen"
+        '
         'StaffForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1247, 789)
-        Me.Controls.Add(Me.GroupBox_movieInfo)
+        Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GroupBox_roomSelection)
         Me.Controls.Add(Me.GroupBox_checkoutList)
-        Me.Controls.Add(Me.GroupBox_seatSelection)
         Me.Controls.Add(Me.TabControl_items)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -339,14 +361,16 @@ Partial Class StaffForm
         Me.TabPage_movies.ResumeLayout(False)
         CType(Me.DataGridView_movieList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Cinema_bookingDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox_seatSelection.ResumeLayout(False)
         Me.GroupBox_checkoutList.ResumeLayout(False)
         Me.GroupBox_roomSelection.ResumeLayout(False)
         Me.GroupBox_roomSelection.PerformLayout()
         CType(Me.DataGridView_projectionTime, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox_movieInfo.ResumeLayout(False)
-        Me.GroupBox_movieInfo.PerformLayout()
         CType(Me.MovieBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
+        Me.seatSelectionTabPage.ResumeLayout(False)
+        Me.bookedTicketsTabPage.ResumeLayout(False)
+        Me.bookedTicketsTabPage.PerformLayout()
+        CType(Me.DataGridView_booked_tickets, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -355,7 +379,6 @@ Partial Class StaffForm
     Friend WithEvents TabPage_movies As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents Cinema_bookingDataSet1 As CinemaBooking.cinema_bookingDataSet
-    Friend WithEvents GroupBox_seatSelection As System.Windows.Forms.GroupBox
     Friend WithEvents Panel_seatSelectionCont As System.Windows.Forms.Panel
     Friend WithEvents GroupBox_checkoutList As System.Windows.Forms.GroupBox
     Friend WithEvents Panel_checkoutCont As System.Windows.Forms.Panel
@@ -363,21 +386,24 @@ Partial Class StaffForm
     Friend WithEvents screenLbl As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents GroupBox_movieInfo As System.Windows.Forms.GroupBox
-    Friend WithEvents Label_rating As System.Windows.Forms.Label
-    Friend WithEvents ProgressBar_rating As System.Windows.Forms.ProgressBar
-    Friend WithEvents genreTBox As System.Windows.Forms.TextBox
-    Friend WithEvents genreLbl As System.Windows.Forms.Label
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents DataGridView_movieList As System.Windows.Forms.DataGridView
     Friend WithEvents MovieBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents MovieTableAdapter As CinemaBooking.cinema_bookingDataSetTableAdapters.MovieTableAdapter
-    Friend WithEvents TextBox_length As System.Windows.Forms.TextBox
-    Friend WithEvents lengthLbl As System.Windows.Forms.Label
-    Friend WithEvents movieTitleBtt As System.Windows.Forms.Label
-    Friend WithEvents TextBox_movieTitle As System.Windows.Forms.TextBox
     Friend WithEvents ComboBox_SelectedDay As System.Windows.Forms.ComboBox
     Friend WithEvents DataGridView_projectionTime As System.Windows.Forms.DataGridView
     Friend WithEvents ComboBox_screen As System.Windows.Forms.ComboBox
+    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents seatSelectionTabPage As System.Windows.Forms.TabPage
+    Friend WithEvents bookedTicketsTabPage As System.Windows.Forms.TabPage
+    Friend WithEvents TextBox_nameBooked As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox_movieTitleBook As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents TextBox_phoneBook As System.Windows.Forms.TextBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents DataGridView_booked_tickets As System.Windows.Forms.DataGridView
+    Friend WithEvents ComboBox_bookedTicketScreen As System.Windows.Forms.ComboBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 End Class

@@ -3,6 +3,8 @@ Imports System.Windows.Forms.Integration
 
 Public Class StaffForm
     Dim moviesList As List(Of MovieRowItem) = New List(Of MovieRowItem)
+    Dim screensList As List(Of IdValueCBoxItem) = New List(Of IdValueCBoxItem)
+    Public ticketsCheckoutList As List(Of TicketSPanel) = New List(Of TicketSPanel)
     Dim con As New SqlConnection(MyConnection.MyConnectionString)
     Dim currSlectedMovieId As Integer = 0
     Dim currSlectedProjId As Integer = 0
@@ -16,15 +18,16 @@ Public Class StaffForm
     Public Sub New(ByVal username As String)
         InitializeComponent()
         Dim test As String = username
-        loadMovieComponents()
+        loadGUIComponents()
     End Sub
 
 
 
-    Private Sub loadMovieComponents()
+    Private Sub loadGUIComponents()
+        screens_loadComboBoxes()
         loadMoviesFromDB()
-        loadComboBox_screen()
 
+        loadBookedTicketDataGrid()
         'Dim movUControl As MoviePreviewUserControl
         'Panel_moviesList. = New ContainerControl()
     End Sub
@@ -35,10 +38,10 @@ Public Class StaffForm
     End Sub
 
     Public Function loadMovieDataGrid()
+        Dim adapter As SqlDataAdapter = New SqlDataAdapter("Select Movie.idmovie, Movie.title, Movie.length as ""Length [min]"", Movie.rating from Movie INNER JOIN MovieProjection on Movie.idmovie = MovieProjection.idmovie where MovieProjection.start_date < CURRENT_TIMESTAMP AND MovieProjection.end_date > CURRENT_TIMESTAMP", con)
+        Dim dt As New DataTable
         Try
             con.Open()
-            Dim adapter As SqlDataAdapter = New SqlDataAdapter("Select Movie.idmovie, Movie.title, Movie.length as ""Length [min]"", Movie.rating from Movie INNER JOIN MovieProjection on Movie.idmovie = MovieProjection.idmovie where MovieProjection.start_date < CURRENT_TIMESTAMP AND MovieProjection.end_date > CURRENT_TIMESTAMP", con)
-            Dim dt As New DataTable
             adapter.Fill(dt)
             DataGridView_movieList.DataSource = dt
         Catch ex As Exception
@@ -46,6 +49,50 @@ Public Class StaffForm
         End Try
         con.Close()
         'clearField()
+    End Function
+
+    Public Function loadBookedTicketDataGrid()
+        Dim sqlCmd = "SELECT t2.name ,t2.phone_nr ,t6.title as 'Movie' ,t7.name as 'Room' ,t3.row_char as 'Row',t3.seat_nr as 'Seat',t4.projection_time as 'Time', t1.barcode, t1.price" & _
+                    "  FROM [cinema_booking].[dbo].[Ticket] as t1" & _
+                    "  INNER JOIN [cinema_booking].[dbo].[Person] AS t2 ON t1.idperson = t2.idperson" & _
+                    "  INNER JOIN [cinema_booking].[dbo].Seat AS t3 on t1.idseat = t3.idseat" & _
+                    "  INNER JOIN [cinema_booking].[dbo].ProjectionTime as t4 on t1.idmovie_projection = t4.idprojection_time" & _
+                    "  INNER JOIN [cinema_booking].[dbo].MovieProjection as t5 on t4.idmovie_projection = t5.idmovie_projection" & _
+                    "  INNER JOIN [cinema_booking].[dbo].movie as t6 on t5.idmovie = t6.idmovie" & _
+                    "  INNER JOIN [cinema_booking].[dbo].TheatreRoom as t7 on t4.idtheatre_room = t7.idtheatre_room" & _
+                    "  where t1.ticket_state = 'B'"
+
+        If (Not String.IsNullOrEmpty(TextBox_nameBooked.Text)) Then
+            sqlCmd += "and t2.name LIKE '%" + TextBox_nameBooked.Text + "%'"
+        End If
+
+        If (Not String.IsNullOrEmpty(TextBox_phoneBook.Text)) Then
+            sqlCmd += "and t2.phone_nr LIKE '%" + TextBox_phoneBook.Text + "%'"
+        End If
+
+        If ComboBox_bookedTicketScreen.SelectedIndex > 0 Then
+            Dim selItem As IdValueCBoxItem = ComboBox_bookedTicketScreen.SelectedItem
+            If selItem IsNot Nothing Then
+                sqlCmd = String.Format(" {0} and t4.idtheatre_room = {1} ", sqlCmd, selItem.id)
+            End If
+        End If
+
+
+        If (Not String.IsNullOrEmpty(TextBox_movieTitleBook.Text)) Then
+            sqlCmd += "and t6.title LIKE '%" + TextBox_movieTitleBook.Text + "%'"
+        End If
+
+        Dim adapter As SqlDataAdapter = New SqlDataAdapter(sqlCmd, con)
+        Dim dt As New DataTable
+        Try
+            con.Open()
+            adapter.Fill(dt)
+            DataGridView_booked_tickets.DataSource = dt
+        Catch ex As Exception
+            MessageBox.Show("Connection error" + ex.Message, "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        con.Close()
+
     End Function
 
     Public Sub selectMovieItem(ByVal selectedTitle As String)
@@ -71,30 +118,20 @@ Public Class StaffForm
         Dim movId As Integer = DataGridView_movieList.Item(0, i).Value
         currSlectedMovieId = movId
 
-        Dim categories As List(Of String) = SqlUtils.getMovieCategories(movId)
-        genreTBox.Text = String.Empty
-
-        For Each cat As String In categories
-            genreTBox.Text += (cat + "/")
-        Next
-        If Not String.IsNullOrEmpty(genreTBox.Text) Then
-            genreTBox.Text = genreTBox.Text.Substring(0, genreTBox.Text.Length - 1)
-        End If
-
-        movieTitleBtt.Text = DataGridView_movieList.Item(1, i).Value.ToString().Trim()
-
-        Dim length As Integer = DataGridView_movieList.Item(2, i).Value
-
-        TextBox_length.Text = String.Format("{0}h {1}m", length / 60, (length Mod 60))
-
-        ProgressBar_rating.Value = DataGridView_movieList.Item(3, i).Value
         loadMovieTimeTable()
     End Sub
 
-    Private Sub loadComboBox_screen()
+
+    Private Sub DataGridView_booked_tickets_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_booked_tickets.CellClick
+        Dim i As Integer
+        i = DataGridView_booked_tickets.CurrentRow.Index
+
+        'do stuff when loading the selected ticket
+
+    End Sub
+
+    Private Sub screens_loadComboBoxes()
         Dim sqlString As String = "SELECT [idtheatre_room] ,[name] FROM [dbo].[TheatreRoom]"
-        ComboBox_screen.Items.Clear()
-        ComboBox_screen.Items.Add(New IdValueCBoxItem(0, "None"))
         Dim id As Integer
         Dim value As String
         Try
@@ -105,14 +142,41 @@ Public Class StaffForm
             For Each row In dt.Rows
                 id = row("idtheatre_room")
                 value = row("name")
-                ComboBox_screen.Items.Add(New IdValueCBoxItem(id, value))
+                screensList.Add(New IdValueCBoxItem(id, value))
             Next
-            ComboBox_screen.SelectedIndex = 0
         Catch ex As Exception
             MessageBox.Show("Connection error" + ex.Message, "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         con.Close()
 
+        loadComboBox_screenProjection()
+        loadComboBox_screenBook()
+    End Sub
+
+    Private Sub loadComboBox_screenProjection()
+        Dim id As Integer
+        Dim value As String
+        ComboBox_screen.Items.Clear()
+        ComboBox_screen.Items.Add(New IdValueCBoxItem(0, "All"))
+        For Each row In screensList
+            id = row.id
+            value = row.value
+            ComboBox_screen.Items.Add(New IdValueCBoxItem(id, value))
+        Next
+            ComboBox_screen.SelectedIndex = 0   
+    End Sub
+
+    Private Sub loadComboBox_screenBook()
+        Dim id As Integer
+        Dim value As String
+        ComboBox_bookedTicketScreen.Items.Clear()
+        ComboBox_bookedTicketScreen.Items.Add(New IdValueCBoxItem(0, "All"))
+        For Each row In screensList
+            id = row.id
+            value = row.value
+            ComboBox_bookedTicketScreen.Items.Add(New IdValueCBoxItem(id, value))
+        Next
+        ComboBox_bookedTicketScreen.SelectedIndex = 0
     End Sub
 
     Private Sub ShowSelectedProjectionRoomSeats()
@@ -217,7 +281,7 @@ Public Class StaffForm
 
     End Sub
 
-    Private Sub genreTBox_TextChanged(sender As Object, e As EventArgs) Handles genreTBox.TextChanged
+    Private Sub genreTBox_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -233,29 +297,25 @@ Public Class StaffForm
     Private Sub ComboBox_SelectedDay_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox_SelectedDay.SelectedIndexChanged
         loadMovieTimeTable()
     End Sub
-End Class
 
-Public Class IdValueCBoxItem
-    Public id As Integer
-    Public value As String
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs)
 
-    Public Sub New(ByVal nId As Integer, ByVal nValue As String)
-        Me.id = nId
-        Me.value = nValue
     End Sub
-    Public Overrides Function ToString() As String
-        Return Me.value
-    End Function
+
+    Private Sub TextBox_movieTitleBook_TextChanged(sender As Object, e As EventArgs) Handles TextBox_movieTitleBook.TextChanged
+        loadBookedTicketDataGrid()
+    End Sub
+
+    Private Sub TextBox_nameBooked_TextChanged(sender As Object, e As EventArgs) Handles TextBox_nameBooked.TextChanged
+        loadBookedTicketDataGrid()
+    End Sub
+
+    Private Sub ComboBox_bookedTicketScreen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox_bookedTicketScreen.SelectedIndexChanged
+        loadBookedTicketDataGrid()
+    End Sub
+
+    Private Sub TextBox_phoneBook_TextChanged(sender As Object, e As EventArgs) Handles TextBox_phoneBook.TextChanged
+        loadBookedTicketDataGrid()
+    End Sub
 End Class
 
-Public Class DateCBoxItem
-    Public mDate As DateTime
-    Public value As String
-    Public Sub New(ByVal nDate As DateTime, ByVal value As String)
-        Me.mDate = nDate
-        Me.value = If(Not (String.IsNullOrEmpty(value)), value, nDate.Date)
-    End Sub
-    Public Overrides Function ToString() As String
-        Return value
-    End Function
-End Class

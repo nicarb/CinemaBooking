@@ -8,37 +8,43 @@
              ScrollViewer.IsDeferredScrollingEnabled="True" >
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel Name="seatSelectionContainer" >
-            <TextBlock Foreground="Blue" FontSize="16" TextAlignment="Center" Name="roomTitle">Screen</TextBlock>
-            <Line Height="5px" />
-            <StackPanel Name="RowA" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowB" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowC" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowD" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowE" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowF" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowG" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowH" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowI" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowJ" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowK" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowL" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowM" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowN" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowO" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowP" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowQ" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowR" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowS" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowT" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowU" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowV" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowW" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowX" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowY" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
-            <StackPanel Name="RowZ" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+            <StackPanel Name="roomSeatsContainer" Orientation="Vertical">
+                <TextBlock Foreground="Blue" FontSize="16" TextAlignment="Center" Name="roomTitle">Screen</TextBlock>
+                <Line Height="5px" />
+                <StackPanel Name="RowA" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowB" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowC" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowD" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowE" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowF" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowG" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowH" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowI" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowJ" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowK" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowL" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowM" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowN" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowO" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowP" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowQ" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowR" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowS" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowT" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowU" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowV" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowW" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowX" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowY" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                <StackPanel Name="RowZ" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+            </StackPanel>
             <Line Height="105px"  />
             <TextBlock Foreground="Blue" FontSize="16" TextAlignment="Center">Selected Tickets</TextBlock>
-            <StackPanel Name="ticketList" Orientation="Vertical" HorizontalAlignment="Center"></StackPanel>
+            <StackPanel Name="ticketList" Orientation="Vertical" HorizontalAlignment="Center">
+                
+            </StackPanel>
+            <Line Height="105px"  />
+            <Button Name="confirmTickets" Height="30" FontSize="14" FontWeight="Bold">Confirm Tickets</Button>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

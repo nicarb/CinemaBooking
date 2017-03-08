@@ -1,11 +1,11 @@
 ﻿Imports System.Windows.Controls
 Imports System.Data.SqlClient
 
-Public Class RoomSeat
+Public Class SeatButton
     Inherits Button
 
     Private con As New SqlConnection(MyConnection.MyConnectionString)
-
+    Private parentPanel As SeatSelectionUserControl
     Public idseat As Integer = 0
     Public idtheatre_room As Integer = 0
     Public idprojection_time As Integer = 0
@@ -21,14 +21,31 @@ Public Class RoomSeat
         Me.Height = 25
     End Sub
 
+    Sub New(ByRef parentPane As SeatSelectionUserControl)
+        Me.Width = 30
+        Me.Height = 25
+        Me.parentPanel = parentPane
+    End Sub
+
     Private Sub buttonClick() Handles Me.Click
         Select Case Me.seat_state
             Case "F"
-                If changeSeatState(Me.idseat, "B") Then
-                    Me.Background = System.Windows.Media.Brushes.Yellow ' = New SolidBrush(Color.Green)
-                    Me.seat_state = "B"
+                If changeSeatState(Me.idseat, "R") Then
+                    Me.Background = System.Windows.Media.Brushes.LightGray ' = New SolidBrush(Color.Green)
+                    Me.seat_state = "R"
+                    Me.parentPanel.addTicketToList(Me)
                 Else
                     MessageBox.Show("Seat Cannot Be Booked!", "Seat Booked", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            Case "R"
+                Dim result As DialogResult = MessageBox.Show("Current seat has been reserved. Do you want to remove it?", "Cancel reservation", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    If changeSeatState(Me.idseat, "F") Then
+                        Me.Background = System.Windows.Media.Brushes.LightGreen '.Brush = New SolidBrush(Color.Red)
+                        Me.seat_state = "F"
+                    Else
+                        MessageBox.Show("Seat Cannot Be un-booked!", "Seat Booked", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
                 End If
             Case "B"
                 Dim result As DialogResult = MessageBox.Show("Current seat has been booked. Do you want to remove it?", "Cancel Ticket", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
@@ -71,7 +88,7 @@ Public Class RoomSeat
 
     End Sub
 
-    Private Function changeSeatState(ByVal idseat As Integer, ByVal new_seat_state As Char) As Boolean
+    Public Function changeSeatState(ByVal idseat As Integer, ByVal new_seat_state As Char) As Boolean
         Dim result As Integer
         Dim CMD As New SqlCommand("updateSeatState")
         CMD.Parameters.Add("@idseat", SqlDbType.Int).Value = idseat

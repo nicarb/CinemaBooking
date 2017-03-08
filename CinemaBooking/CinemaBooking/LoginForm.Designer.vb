@@ -30,7 +30,6 @@ Partial Class LoginForm
         Me.BTN_Cancel = New System.Windows.Forms.Button()
         Me.BTN_Login = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -98,20 +97,11 @@ Partial Class LoginForm
         Me.PictureBox1.TabIndex = 7
         Me.PictureBox1.TabStop = False
         '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Location = New System.Drawing.Point(224, 182)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(247, 72)
-        Me.RichTextBox1.TabIndex = 14
-        Me.RichTextBox1.Text = ""
-        '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(483, 302)
-        Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextBox_Password)
@@ -133,6 +123,5 @@ Partial Class LoginForm
     Friend WithEvents BTN_Cancel As System.Windows.Forms.Button
     Friend WithEvents BTN_Login As System.Windows.Forms.Button
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
 
 End Class
