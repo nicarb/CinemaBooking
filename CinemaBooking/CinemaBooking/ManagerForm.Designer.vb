@@ -981,7 +981,7 @@ Partial Class ManagerForm
         '
         'But_Upload
         '
-        Me.But_Upload.Location = New System.Drawing.Point(481, 129)
+        Me.But_Upload.Location = New System.Drawing.Point(579, 138)
         Me.But_Upload.Name = "But_Upload"
         Me.But_Upload.Size = New System.Drawing.Size(94, 28)
         Me.But_Upload.TabIndex = 18
@@ -993,14 +993,14 @@ Partial Class ManagerForm
         Me.CheckedListBox1.FormattingEnabled = True
         Me.CheckedListBox1.Location = New System.Drawing.Point(753, 17)
         Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(120, 88)
+        Me.CheckedListBox1.Size = New System.Drawing.Size(162, 151)
         Me.CheckedListBox1.TabIndex = 17
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(481, 54)
+        Me.PictureBox1.Location = New System.Drawing.Point(430, 17)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(94, 60)
+        Me.PictureBox1.Size = New System.Drawing.Size(143, 151)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 16
         Me.PictureBox1.TabStop = False
@@ -1017,7 +1017,7 @@ Partial Class ManagerForm
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(477, 17)
+        Me.Label31.Location = New System.Drawing.Point(579, 116)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(47, 19)
         Me.Label31.TabIndex = 8

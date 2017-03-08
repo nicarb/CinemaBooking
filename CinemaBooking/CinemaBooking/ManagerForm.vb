@@ -15,11 +15,9 @@ Public Class ManagerForm
     End Sub
 
     Private Sub ManagerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        dataGrid()
-
         Try
             con.Open()
-            'Load User Data
+
             Dim da As New SqlDataAdapter("SELECT Person.idperson ,Person.name, Person.surname, Person.birthdate, Person.gender, Person.address, Person.email, [User].username, [User].password, [User].isactive,  [User].role, [User].iduser From Person INNER Join [User] On Person.idperson = [User].idperson And Person.idperson= '" & idpers & "' ", con)
             Dim ds As New DataSet
             da.Fill(ds, "Person")
@@ -55,7 +53,7 @@ Public Class ManagerForm
                     CheckBox3.Checked = False
                 End If
             End If
-
+            dataGrid()
             'Populate Language combobox
             Dim command As New SqlCommand("SELECT * FROM [dbo].[Language] where isMovieLanguage = 'T'", con)
             Dim adapter As New SqlDataAdapter(command)
@@ -73,11 +71,11 @@ Public Class ManagerForm
             CheckedListBox1.DataSource = t
             CheckedListBox1.DisplayMember = "name"
             CheckedListBox1.ValueMember = "idcategory"
-            con.Close()
         Catch ex As Exception
             MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         dataGridFilm()
+        con.Close()
     End Sub
 
     'Insert User
@@ -144,6 +142,7 @@ Public Class ManagerForm
                 MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
             dataGrid()
+            con.Close()
         End If
     End Sub
 
@@ -186,6 +185,7 @@ Public Class ManagerForm
             MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         dataGrid()
+        con.Close()
     End Sub
 
     'DataGrid User
@@ -194,7 +194,6 @@ Public Class ManagerForm
         Dim dt As New DataTable
         adapter.Fill(dt)
         DataGridView1.DataSource = dt
-        con.Close()
         clearField()
     End Function
 
@@ -303,6 +302,7 @@ Public Class ManagerForm
             MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         dataGrid()
+        con.Close()
     End Sub
 
     Private Sub TextBox4_Validated(sender As Object, e As EventArgs) Handles TextBox4.Validated
@@ -342,6 +342,28 @@ Public Class ManagerForm
 
     'Film Sector
 
+    Private Sub addPictureToDB(ByVal idMovie As String)
+        Dim sql As String = "UPDATE [dbo].[Movie]  SET [cover] = @image WHERE idmovie = @idmovie "
+        Dim cmd As New SqlCommand(sql, con)
+        cmd.Parameters.AddWithValue("@idmovie", id.Text)
+        Dim ms As New MemoryStream()
+        PictureBox1.BackgroundImage.Save(ms, PictureBox1.BackgroundImage.RawFormat)
+        Dim data As Byte() = ms.GetBuffer()
+        Dim p As New SqlParameter("@image", SqlDbType.Image)
+        p.Value = data
+        cmd.Parameters.Add(p)
+        Try
+            If (con.State <> ConnectionState.Open) Then
+                con.Open()
+            End If
+            cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            MessageBox.Show("Failed to connect to Database!" + ex.Message, "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
     Private Sub AddFilm_Click(sender As Object, e As EventArgs) Handles AddFilm.Click
         Dim cmd As New SqlCommand
         Dim cmd1 As New SqlCommand
@@ -354,7 +376,8 @@ Public Class ManagerForm
         Try
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "INSERT INTO [Movie]([title],[plot],[length], [cover], [release_year],[idlanguage],[rating]) VALUES ( '" & title.Text & "','" & Plot.Text & "','" & Length.Value & "',@photo, '" & DateFilm.Text & "','" & selLanguage & "','" & Rating.Value & "' )"
+            cmd.CommandText = "INSERT INTO [Movie]([title],[plot],[length], [cover], [release_year],[idlanguage],[rating]) VALUES ( '" & title.Text & "','" & Plot.Text & "','" & Length.Value & "',@photo, '" & DateFilm.Text & "','" & selLanguage & "','" & Rating.Value & "' ); SELECT SCOPE_IDENTITY() "
+
             Dim ms As New MemoryStream()
             '## N.A.
             PictureBox1.BackgroundImage.Save(ms, PictureBox1.BackgroundImage.RawFormat)
@@ -362,12 +385,15 @@ Public Class ManagerForm
             Dim p As New SqlParameter("@photo", SqlDbType.Image)
             p.Value = data
             cmd.Parameters.Add(p)
-            cmd.ExecuteNonQuery()
+            Dim newId As String = cmd.ExecuteScalar()
+            addPictureToDB(newId)
+
             MsgBox("Succesfully Added Film!", MsgBoxStyle.Information, "Add")
         Catch ex As Exception
             MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         dataGridFilm()
+        con.Close()
     End Sub
 
     Private Sub UpdatFilm_Click(sender As Object, e As EventArgs) Handles UpdatFilm.Click
@@ -377,13 +403,18 @@ Public Class ManagerForm
             '## N.A.
             con.Open()
             cmd.Connection = con
-            cmd.CommandText = "UPDATE [Movie] SET [title] = ' " & title.Text & " ',[plot] = ' " & Plot.Text & " ', [length] = ' " & Length.Value & " ' , [release_year] = '" & DateFilm.Text & "', [rating] = '" & Rating.Value & "', [idLanguage]= '" & selLanguage & "' where [idmovie] = ' " & id.Text & " ' "
+            cmd.CommandText = "UPDATE [Movie] SET [title] = '" & title.Text.Replace("'", "-") & "', [plot] = '" & Plot.Text.Replace("'", "-") & "', [length] = " & Length.Value & " , [release_year] = '" & DateFilm.Value.ToString() & "', [rating] = " & Rating.Value & " where [idmovie] = " & id.Text & "  "
             cmd.ExecuteNonQuery()
             MsgBox("Succesfully Update!", MsgBoxStyle.Information, "Update")
+
+            'update image in db
+            addPictureToDB(id.Text)
+
         Catch ex As Exception
-            MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Failed to connect to Database!" + ex.Message, "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         dataGridFilm()
+        con.Close()
     End Sub
 
     Private Sub DeleteFilm_Click(sender As Object, e As EventArgs) Handles DeleteFilm.Click
@@ -402,15 +433,19 @@ Public Class ManagerForm
             MessageBox.Show("Failed to connect to Database!", "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         dataGridFilm()
+        con.Close()
     End Sub
 
     Private Function dataGridFilm()
-        Dim adapter As SqlDataAdapter = New SqlDataAdapter("Select Movie.idmovie, Movie.title,Movie.plot, Movie.length, Movie.release_year,Movie.rating, Movie.cover,[Language].name From Movie Inner Join [Language] ON Movie.idlanguage = [Language].idlanguage", con)
-        Dim dt As New DataTable
-        adapter.Fill(dt)
-        FilmDataGrid.DataSource = dt
-        con.Close()
-        clearFieldFilm()
+        If (con.State = ConnectionState.Open) Then
+            Dim adapter As SqlDataAdapter = New SqlDataAdapter("Select Movie.idmovie, Movie.title,Movie.plot, Movie.length, Movie.release_year,Movie.rating, Movie.cover,[Language].name From Movie Inner Join [Language] ON Movie.idlanguage = [Language].idlanguage", con)
+            Dim dt As New DataTable
+            adapter.Fill(dt)
+            FilmDataGrid.DataSource = dt
+            clearFieldFilm()
+        End If
+
+
     End Function
 
     Private Sub But_Upload_Click(sender As Object, e As EventArgs) Handles But_Upload.Click
@@ -429,7 +464,7 @@ Public Class ManagerForm
         title.Clear()
         Plot.Clear()
         Length.ResetText()
-        DateFilm.CustomFormat = " "
+        DateFilm.CustomFormat = "yyyy"
         DateFilm.Format = DateTimePickerFormat.Custom
         ComboLanguage.SelectedIndex = -1
         Rating.ResetText()
@@ -464,8 +499,29 @@ Public Class ManagerForm
         End If
         Rating.Value = FilmDataGrid.Item(5, i).Value
         ComboLanguage.Text = FilmDataGrid.Item(7, i).Value.ToString
-        '## N.A.
 
+        Dim cmd As New SqlCommand
+        cmd = New SqlCommand("SELECT [cover] FROM [dbo].[Movie] where [idmovie] = " + FilmDataGrid.Item(0, i).Value.ToString(), con)
+        Try
+            con.Open()
+
+            Dim oJobName As Object = cmd.ExecuteScalar()
+
+            If oJobName Is Nothing Then
+                Dim imageData As Byte() = DirectCast(oJobName, Byte())
+                If Not imageData Is Nothing Then
+                    Using ms As New MemoryStream(imageData, 0, imageData.Length)
+                        ms.Write(imageData, 0, imageData.Length)
+                        PictureBox1.BackgroundImage = Image.FromStream(ms, True)
+                    End Using
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Failed to connect to Database! " + ex.Message, "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        con.Close()
+        '## N.A.
+        'SELECT [cover] FROM [dbo].[Movie] where [idmovie] = 
         ''PictureBox1.BackgroundImage = FilmDataGrid.Item(6, i).Value
         'Dim myImageBytes = DirectCast(DirectCast(FilmDataGrid.Item(6, i), DataGridViewImageCell).Value, Byte())
         'Using myMemoryStream As New IO.MemoryStream
