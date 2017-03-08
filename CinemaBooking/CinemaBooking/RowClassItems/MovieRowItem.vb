@@ -10,3 +10,9 @@
     Public rating As Short = 0
     Public cover As Image
 End Class
+
+Public Class FoodRowItem
+    Public iditem As Integer = -1
+    Public name As String = String.Empty
+
+End Class

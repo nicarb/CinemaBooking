@@ -54,9 +54,11 @@ Partial Class StaffForm
         Me.DataGridView_booked_tickets = New System.Windows.Forms.DataGridView()
         Me.ComboBox_bookedTicketScreen = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.DataGridView_Items = New System.Windows.Forms.DataGridView()
         Me.TabControl_items.SuspendLayout()
         Me.TabPage_movies.SuspendLayout()
         CType(Me.DataGridView_movieList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
         CType(Me.Cinema_bookingDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox_checkoutList.SuspendLayout()
         Me.GroupBox_roomSelection.SuspendLayout()
@@ -66,6 +68,7 @@ Partial Class StaffForm
         Me.seatSelectionTabPage.SuspendLayout()
         Me.bookedTicketsTabPage.SuspendLayout()
         CType(Me.DataGridView_booked_tickets, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView_Items, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl_items
@@ -102,6 +105,7 @@ Partial Class StaffForm
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.DataGridView_Items)
         Me.TabPage2.Location = New System.Drawing.Point(4, 27)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -343,6 +347,14 @@ Partial Class StaffForm
         Me.Label5.TabIndex = 31
         Me.Label5.Text = "Screen"
         '
+        'DataGridView_Items
+        '
+        Me.DataGridView_Items.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView_Items.Location = New System.Drawing.Point(6, 6)
+        Me.DataGridView_Items.Name = "DataGridView_Items"
+        Me.DataGridView_Items.Size = New System.Drawing.Size(547, 268)
+        Me.DataGridView_Items.TabIndex = 0
+        '
         'StaffForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -360,6 +372,7 @@ Partial Class StaffForm
         Me.TabControl_items.ResumeLayout(False)
         Me.TabPage_movies.ResumeLayout(False)
         CType(Me.DataGridView_movieList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
         CType(Me.Cinema_bookingDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox_checkoutList.ResumeLayout(False)
         Me.GroupBox_roomSelection.ResumeLayout(False)
@@ -371,6 +384,7 @@ Partial Class StaffForm
         Me.bookedTicketsTabPage.ResumeLayout(False)
         Me.bookedTicketsTabPage.PerformLayout()
         CType(Me.DataGridView_booked_tickets, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView_Items, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -406,4 +420,5 @@ Partial Class StaffForm
     Friend WithEvents DataGridView_booked_tickets As System.Windows.Forms.DataGridView
     Friend WithEvents ComboBox_bookedTicketScreen As System.Windows.Forms.ComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents DataGridView_Items As System.Windows.Forms.DataGridView
 End Class

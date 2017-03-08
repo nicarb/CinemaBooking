@@ -2,7 +2,6 @@
 Imports System.Windows.Forms.Integration
 
 Public Class StaffForm
-    Dim moviesList As List(Of MovieRowItem) = New List(Of MovieRowItem)
     Dim screensList As List(Of IdValueCBoxItem) = New List(Of IdValueCBoxItem)
     Public ticketsCheckoutList As List(Of TicketSPanel) = New List(Of TicketSPanel)
     Dim con As New SqlConnection(MyConnection.MyConnectionString)
@@ -25,17 +24,35 @@ Public Class StaffForm
 
     Private Sub loadGUIComponents()
         screens_loadComboBoxes()
-        loadMoviesFromDB()
 
+        loadMovieDataGrid()
+        loadFoodDataGrid()
         loadBookedTicketDataGrid()
+
+        loadComboBox_SelectedDay()
         'Dim movUControl As MoviePreviewUserControl
         'Panel_moviesList. = New ContainerControl()
     End Sub
 
-    Private Sub loadMoviesFromDB()
-        loadMovieDataGrid()
-        loadComboBox_SelectedDay()
-    End Sub
+
+    Public Function loadFoodDataGrid()
+        Dim sqlCmd As String = "Select RTRIM(t1.name) AS 'Item', RTRIM(t1.details) AS 'detail', t1.unit_price, RTRIM(t2.name) AS 'Type', t1.iditem, t2.iditem_type" & _
+                                " from [cinema_booking].[dbo].Item as t1 " & _
+                                " inner join [cinema_booking].[dbo].ItemType as t2 on t1.iditem_type = t2.iditem_type  " & _
+                                " where t1.is_ticket = 0"
+
+        Dim adapter As SqlDataAdapter = New SqlDataAdapter(sqlCmd, con)
+        Dim dt As New DataTable
+
+        Try
+            con.Open()
+            adapter.Fill(dt)
+            DataGridView_Items.DataSource = dt
+        Catch ex As Exception
+            MessageBox.Show("Connection error" + ex.Message, "Database Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        con.Close()
+    End Function
 
     Public Function loadMovieDataGrid()
         Dim adapter As SqlDataAdapter = New SqlDataAdapter("Select Movie.idmovie, Movie.title, Movie.length as ""Length [min]"", Movie.rating from Movie INNER JOIN MovieProjection on Movie.idmovie = MovieProjection.idmovie where MovieProjection.start_date < CURRENT_TIMESTAMP AND MovieProjection.end_date > CURRENT_TIMESTAMP", con)
@@ -95,10 +112,6 @@ Public Class StaffForm
 
     End Function
 
-    Public Sub selectMovieItem(ByVal selectedTitle As String)
-        Dim selectedItem As MovieRowItem = moviesList.Find(Function(x) x.title = selectedTitle)
-
-    End Sub
 
     Private Sub Button_selectSeat_Click(sender As Object, e As EventArgs)
 
@@ -129,6 +142,16 @@ Public Class StaffForm
         'do stuff when loading the selected ticket
 
     End Sub
+
+    Private Sub DataGridView_Items_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView_Items.CellClick
+        Dim i As Integer
+        i = DataGridView_Items.CurrentRow.Index
+
+        Dim itId As Integer = DataGridView_Items.Item(4, i).Value
+
+    End Sub
+
+
 
     Private Sub screens_loadComboBoxes()
         Dim sqlString As String = "SELECT [idtheatre_room] ,[name] FROM [dbo].[TheatreRoom]"
